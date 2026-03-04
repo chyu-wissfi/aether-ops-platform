@@ -1,7 +1,7 @@
 # LLMOps
 
 ## LLMOps架构
-![LLMOps架构](LLMOps架构.png)
+![LLMOps架构](README/LLMOps架构.png)
 **文件组织方式**：
 ```Plain Text
 |---app  // 应用入口集合
@@ -79,4 +79,4 @@
 ├---requirements.txt  // 第三方包依赖管理
 └---README.md  // 项目说明文件
 ```
-![后端代码执行流程图](后端代码执行流程图.png)
+![后端代码执行流程图](README/后端代码执行流程图.png)
