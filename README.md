@@ -1,10 +1,15 @@
 # LLMOps
-
-[TOC]
-
+![GitHub stars](https://img.shields.io/github/stars/chyu-wissfi/LLMOps-all-stack?style=social)
+![GitHub forks](https://img.shields.io/github/forks/chyu-wissfi/LLMOps-all-stack?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/chyu-wissfi/LLMOps-all-stack?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/chyu-wissfi/LLMOps-all-stack)
+![GitHub language count](https://img.shields.io/github/languages/count/chyu-wissfi/LLMOps-all-stack)
+![GitHub top language](https://img.shields.io/github/languages/top/chyu-wissfi/LLMOps-all-stack)
+![GitHub last commit](https://img.shields.io/github/last-commit/chyu-wissfi/LLMOps-all-stack?color=red)
 
 
 ## LLMOps架构
+
 ![LLMOps架构](README/LLMOps架构.png)
 
 **文件组织方式**：
@@ -95,3 +100,10 @@
 ```bash
 pip install -r requirements.txt
 ```
+
+## 贡献
+贡献是使开源社区成为学习、激励和创造的惊人之处。非常感谢你所做的任何贡献。如果你有任何建议或功能请求，请先开启一个议题讨论你想要改变的内容。
+
+## 许可证
+
+该项目根据Apache-2.0许可证的条款进行许可。详情请参见[LICENSE](LICENSE)文件。
