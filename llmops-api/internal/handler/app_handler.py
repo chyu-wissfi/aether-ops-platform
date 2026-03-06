@@ -3,10 +3,11 @@
 @Author: chyu.wissfi@gmail.com
 @Description: Application handler
 """
-from flask import request
+from flask import request, jsonify
 from openai import OpenAI
 import os
 from internal.schema.app_schema import CompletionReq
+from pkg.response import success_json, fail_json, validate_error_json
 
 
 class AppHandler:
@@ -19,7 +20,7 @@ class AppHandler:
         基础聊天接口，接收用户输入，调用OpenAI API，返回模型响应
         """
         # 1.提取从接口中获取的输入，POST
-        req = CompletionReq(data=request.json)
+        req = CompletionReq()
         if not req.validate():
             return validate_error_json(req.errors)
 
@@ -39,7 +40,8 @@ class AppHandler:
         )
 
         content = completion.choices[0].message.content
-        return content
+
+        return success_json({"content": content})   # 这个接口返回的状态码永远是200
 
     def ping(self):
         return {"ping": "pong"}
