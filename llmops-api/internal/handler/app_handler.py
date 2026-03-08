@@ -11,7 +11,7 @@ from internal.exception import FailException
 from internal.service import AppService
 from dataclasses import dataclass
 from injector import inject
-
+import uuid
 
 
 @inject
@@ -29,6 +29,29 @@ class AppHandler:
         app = self.app_service.create_app()
  
         return success_message(f"创建应用成功, 应用ID: {app.id}")
+
+    def get_app(self, id: uuid.UUID) -> dict:
+        """
+        获取应用详情
+        """
+        app = self.app_service.get_app(id)
+        return success_message(f"获取应用成功, 应用名称: {app.name}")
+
+    def update_app(self, id: uuid.UUID) -> dict:
+        """
+        更新应用详情
+        """
+        app = self.app_service.update_app(id)
+        return success_message(f"更新应用成功, 应用名称修改为: {app.name}")
+
+    def delete_app(self, id: uuid.UUID) -> dict:
+        """
+        删除应用详情
+        """
+        app = self.app_service.delete_app(id)
+        return success_message(f"删除应用成功, 应用ID: {app.id}")
+
+
 
     def completion(self) -> dict:
         """

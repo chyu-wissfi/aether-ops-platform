@@ -35,3 +35,36 @@ class AppService:
         self.db.session.commit()
         # 返回创建的应用实例
         return app
+
+    def get_app(self, id: uuid.UUID) -> App:
+        """
+        获取 AI 应用
+        """
+        # 查询数据库获取应用实例
+        app = self.db.session.query(App).filter_by(id=id).first()
+        # 返回应用实例
+        return app
+
+    def update_app(self, id: uuid.UUID) -> App:
+        """
+        更新 AI 应用
+        """
+        # 查询数据库获取应用实例
+        app = self.get_app(id)
+        # 更新应用实例属性
+        app.name = "更新后的聊天机器人"
+        self.db.session.commit()
+        return app
+
+    def delete_app(self, id: uuid.UUID) -> App:
+        """
+        删除 AI 应用
+        """
+        # 查询数据库获取应用实例
+        app = self.get_app(id)
+        # 数据库会话删除应用实例
+        self.db.session.delete(app)
+        # 数据库会话提交变更
+        self.db.session.commit()
+        # 返回删除的应用实例
+        return app
