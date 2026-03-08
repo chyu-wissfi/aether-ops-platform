@@ -9,7 +9,7 @@ from internal.router import Router
 from dotenv import load_dotenv
 from config import Config
 from .module import ExtensionModule
-from flask_sqlalchemy import SQLAlchemy
+from pkg.sqlalchemy import SQLAlchemy
 
 
 

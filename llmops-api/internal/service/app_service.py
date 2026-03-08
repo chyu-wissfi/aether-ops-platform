@@ -6,7 +6,7 @@
 
 from dataclasses import dataclass
 from injector import inject
-from flask_sqlalchemy import SQLAlchemy
+from pkg.sqlalchemy import SQLAlchemy
 import uuid
 from internal.model.app import App
 
@@ -22,18 +22,14 @@ class AppService:
         """
         创建 AI 应用
         """
-        # 创建 AI 应用实例
-        app = App(
-            account_id=uuid.uuid4(),
-            name="测试机器人",
-            icon="",
-            description="这是一个简单的聊天机器人",
-        )
-        # 数据库会话添加应用实例
-        self.db.session.add(app)
-        # 数据库会话提交变更
-        self.db.session.commit()
-        # 返回创建的应用实例
+        with self.db.auto_commit():
+            app = App(
+                account_id=uuid.uuid4(),
+                name="测试机器人",
+                icon="",
+                description="这是一个简单的聊天机器人",
+            )
+            self.db.session.add(app)
         return app
 
     def get_app(self, id: uuid.UUID) -> App:
@@ -49,22 +45,16 @@ class AppService:
         """
         更新 AI 应用
         """
-        # 查询数据库获取应用实例
-        app = self.get_app(id)
-        # 更新应用实例属性
-        app.name = "更新后的聊天机器人"
-        self.db.session.commit()
+        with self.db.auto_commit():
+            app = self.get_app(id)
+            app.name = "更新后的聊天机器人"
         return app
 
     def delete_app(self, id: uuid.UUID) -> App:
         """
         删除 AI 应用
         """
-        # 查询数据库获取应用实例
-        app = self.get_app(id)
-        # 数据库会话删除应用实例
-        self.db.session.delete(app)
-        # 数据库会话提交变更
-        self.db.session.commit()
-        # 返回删除的应用实例
+        with self.db.auto_commit():
+            app = self.get_app(id)
+            self.db.session.delete(app)
         return app
