@@ -9,13 +9,13 @@ from config import Config
 from internal.exception import CustomException
 from pkg.response import json, Response, HttpCode
 import os
-
+from flask_sqlalchemy import SQLAlchemy
 
 class Http(Flask):
     """
     HTTP 服务引擎
     """
-    def __init__(self, *args, conf: Config, router: Router, **kwargs) -> None:
+    def __init__(self, *args, conf: Config, db: SQLAlchemy, router: Router, **kwargs) -> None:
         super().__init__(*args, **kwargs) 
         # 1. 初始化应用配置
         self.config.from_object(conf)
@@ -23,7 +23,10 @@ class Http(Flask):
         # 2.注册绑定异常处理
         self.register_error_handler(Exception, self._register_error_handler)
 
-        # 3. 注册应用路由
+        # 3.初始化Flask扩展
+        db.init_app(self)
+
+        # 4. 注册应用路由
         router.register_router(self)
 
     def _register_error_handler(self, error: Exception):

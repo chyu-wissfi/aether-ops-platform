@@ -8,16 +8,21 @@ from internal.server import Http
 from internal.router import Router
 from dotenv import load_dotenv
 from config import Config
+from .module import ExtensionModule
+from flask_sqlalchemy import SQLAlchemy
+
+
 
 # 导入环境变量
 load_dotenv()
 
 conf = Config()
 
-# 初始化依赖注入容器
-injector = Injector()
 
-app = Http(__name__, conf=conf, router=injector.get(Router))
+# 初始化依赖注入容器
+injector = Injector([ExtensionModule])
+
+app = Http(__name__, conf=conf, db=injector.get(SQLAlchemy), router=injector.get(Router))
 
 
 if __name__ == "__main__":
