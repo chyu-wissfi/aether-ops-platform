@@ -3,7 +3,6 @@
 @Author: chyu.wissfi@gmail.com
 @Description: Application handler
 """
-from openai import OpenAI
 import os
 from internal.schema.app_schema import CompletionReq
 from pkg.response import success_json, validate_error_json, success_message
@@ -12,7 +11,9 @@ from internal.service import AppService
 from dataclasses import dataclass
 from injector import inject
 import uuid
-
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+from langchain_core.output_parsers import StrOutputParser
 
 @inject
 @dataclass
@@ -51,8 +52,6 @@ class AppHandler:
         app = self.app_service.delete_app(id)
         return success_message(f"删除应用成功, 应用ID: {app.id}")
 
-
-
     def completion(self) -> dict:
         """
         聊天接口
@@ -63,24 +62,29 @@ class AppHandler:
         if not req.validate():
             return validate_error_json(req.errors)
 
-        # 2.构建OpenAI 客户端并发起请求
-        client = OpenAI(
+        # 2. 构建Prompt模板
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", "你是一个专业的助手,请回答用户的问题"),
+            ("human", "{query}"),
+        ])
+
+        # 3.构建OpenAI 客户端并发起请求
+        llm = ChatOpenAI(
             api_key=os.getenv("API_KEY"),
-            base_url=os.getenv("BASE_URL")
+            base_url=os.getenv("BASE_URL"),
+            model_name="gpt-5",
         )
+        # 4. 解析OpenAI的响应
+        parser = StrOutputParser()
+
+        # 5.得到请求响应，然后将OpenAI的响应传递给前端
+        chain = prompt | llm | parser
         
-        # 3.得到请求响应，然后将OpenAI的响应传递给前端
-        completion = client.chat.completions.create(
-            model="gpt-5",
-            messages=[
-                {"role": "system", "content": "你是一个专业的助手,请回答用户的问题"},
-                {"role": "user", "content": req.query.data},
-            ],
+        ai_message = chain.invoke(
+            {"query": req.query.data}
         )
 
-        content = completion.choices[0].message.content
-
-        return success_json({"content": content})   # 这个接口返回的状态码永远是200
+        return success_json({"content": ai_message})   # 这个接口返回的状态码永远是200
 
     def ping(self):
         raise FailException("数据未找到")
