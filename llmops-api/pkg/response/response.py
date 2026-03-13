@@ -18,7 +18,7 @@ class Response:
     message: str = ""
     data: Any = field(default_factory=dict)
 
-def json(resp: Response) -> dict:
+def json(resp: Response, status_code: int = 200) -> tuple:
     """
     将Response对象转换为JSON格式
     """

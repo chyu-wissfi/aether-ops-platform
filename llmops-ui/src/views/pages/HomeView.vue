@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useAccountStore } from '@/stores/account.ts'
+import { useAccountStore } from '@/stores/account'
 
 const accountStore = useAccountStore()
 
 function updateName() {
-  accountStore.update({ name: 'chyu' })
+  accountStore.update({ name: '小小课' })
 }
 </script>
 

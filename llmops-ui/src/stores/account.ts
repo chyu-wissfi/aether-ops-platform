@@ -3,13 +3,13 @@ import { ref } from 'vue'
 
 // 初始值
 const initAccount = {
-  name: 'Wissfi',
-  email: 'chyu.wissfi@qmail.com',
+  name: '慕小课',
+  email: 'imooc@163.com',
   avatar: '',
 }
 
 export const useAccountStore = defineStore('account', () => {
-  // 1. 定义数据
+  // 1.定义数据
   const account = ref({ ...initAccount })
 
   // 2.函数/动作

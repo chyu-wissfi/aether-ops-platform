@@ -14,6 +14,7 @@ from uuid import UUID
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
+# from langchain_core.runnables.history import RunnableWithMessageHistory
 
 @inject
 @dataclass
@@ -64,7 +65,8 @@ class AppHandler:
 
         # 2. 构建Prompt模板
         prompt = ChatPromptTemplate.from_messages([
-            ("system", "你是一个专业的助手,请回答用户的问题"),
+            ("system", "你是一个强大的助手,能根据用户的提问回答用户的问题"),
+            # MessagesPlaceholder(variable_name="history"),
             ("human", "{query}"),
         ])
 
@@ -84,7 +86,7 @@ class AppHandler:
             {"query": req.query.data}
         )
 
-        return success_json({"content": ai_message})   # 这个接口返回的状态码永远是200
+        return success_json({"content": ai_message})
 
     def ping(self):
         raise FailException("数据未找到")
