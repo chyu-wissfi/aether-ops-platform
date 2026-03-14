@@ -3,6 +3,7 @@
 @Author: chyu.wissfi@gmail.com
 @Description: Application handler
 """
+from operator import itemgetter
 import os
 from internal.schema.app_schema import CompletionReq
 from pkg.response import success_json, validate_error_json, success_message
@@ -11,10 +12,19 @@ from internal.service import AppService
 from dataclasses import dataclass
 from injector import inject
 from uuid import UUID
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from typing import Any, Dict
+
+
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser
-# from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda, RunnableConfig
+from langchain_core.memory import BaseMemory
+from langchain_core.tracers import Run
+from langchain_openai import ChatOpenAI
+from langchain.memory import ConversationBufferWindowMemory
+from langchain_community.chat_message_histories import FileChatMessageHistory
+
+
 
 @inject
 @dataclass
@@ -53,6 +63,27 @@ class AppHandler:
         app = self.app_service.delete_app(id)
         return success_message(f"删除应用成功, 应用ID: {app.id}")
 
+    @classmethod
+    def _load_memory_variables(cls, input: Dict[str, Any], config: RunnableConfig) -> Dict[str, Any]:
+        """
+        加载记忆变量信息
+        """
+        configurable = config.get("configurable", {})
+        configurable_memory = configurable.get("memory", None)
+        if configurable_memory is not None and isinstance(configurable_memory, BaseMemory):
+            return configurable_memory.load_memory_variables(input)
+        return {"history": []}
+
+    @classmethod
+    def _save_context(cls, run_obj: Run, config: RunnableConfig) -> None:
+        """
+        存储上下文信息到对应的记忆实体中
+        """
+        configurable = config.get("configurable", {})
+        configurable_memory = configurable.get("memory", None)
+        if configurable_memory is not None and isinstance(configurable_memory, BaseMemory):
+            configurable_memory.save_context(run_obj.inputs, run_obj.outputs)
+
     def debug(self, app_id: UUID) -> dict:
         """
         聊天接口
@@ -63,12 +94,20 @@ class AppHandler:
         if not req.validate():
             return validate_error_json(req.errors)
 
-        # 2. 构建Prompt模板
+        # 2. 构建Prompt模板与记忆
         prompt = ChatPromptTemplate.from_messages([
             ("system", "你是一个强大的助手,能根据用户的提问回答用户的问题"),
-            # MessagesPlaceholder(variable_name="history"),
+            MessagesPlaceholder(variable_name="history"),
             ("human", "{query}"),
         ])
+
+        memory = ConversationBufferWindowMemory(
+            k=3,
+            input_key="query",
+            output_key="output",
+            return_messages=True,
+            chat_memory=FileChatMessageHistory(file_path="./storage/memory/chat_history.txt"),
+        )
 
         # 3.构建OpenAI 客户端并发起请求
         llm = ChatOpenAI(
@@ -79,19 +118,25 @@ class AppHandler:
         # 4. 解析OpenAI的响应
         parser = StrOutputParser()
 
-        # 5.得到请求响应，然后将OpenAI的响应传递给前端
-        chain = prompt | llm | parser
-        
-        ai_message = chain.invoke(
-            {"query": req.query.data}
-        )
+        # 5.创建链应用
+        chain = (RunnablePassthrough.assign(
+                history = RunnableLambda(self._load_memory_variables) | itemgetter("history")
+            ) 
+            | prompt 
+            | llm 
+            | parser
+        ).with_listeners(on_end=self._save_context)
 
-        return success_json({"content": ai_message})
+        chain_input = {"query": req.query.data}
+        
+        content = chain.invoke(chain_input, config = {"configurable":{"memory":memory}})
+
+        return success_json({"content": content})
 
     def ping(self):
         raise FailException("数据未找到")
 
 
-if __name__ == "__main__":
-    print(os.getenv("API_KEY"))
-    print(os.getenv("BASE_URL"))
+# if __name__ == "__main__":
+#     print(os.getenv("API_KEY"))
+#     print(os.getenv("BASE_URL"))
