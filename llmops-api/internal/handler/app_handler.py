@@ -23,7 +23,6 @@ from langchain_core.tracers import Run
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_community.chat_message_histories import FileChatMessageHistory
-from internal.core.tools.builtin_tools.providers import ProviderFactory
 
 
 
@@ -35,7 +34,6 @@ class AppHandler:
     """
     app_service: AppService
     vector_database_service: VectorDatabaseService
-    provider_factory: ProviderFactory
 
     def create_app(self) -> dict:
         """
@@ -145,8 +143,7 @@ class AppHandler:
         """
         测试接口
         """
-        providers = self.provider_factory.get_provider_entities()
-        return success_json({"providers": [provider.model_dump() for provider in providers]})
+        return success_json()
 
         # raise FailException("数据未找到")
 

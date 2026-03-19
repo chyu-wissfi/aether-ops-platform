@@ -23,6 +23,7 @@ class ProviderEntity(BaseModel):
     icon: str  # 图标地址
     background: str  # 图标背景颜色
     category: str  # 分类信息
+    created_at: int = 0  # 提供商/工具的创建时间戳
 
 
 class Provider(BaseModel):

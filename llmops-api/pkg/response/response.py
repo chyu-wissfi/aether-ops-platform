@@ -3,7 +3,7 @@
 @Author: chyu.wissfi@gmail.com
 @Description: Response class
 """
-from dataclasses import field
+from dataclasses import field, asdict
 from typing import Any
 from .http_code import HttpCode
 from dataclasses import dataclass
@@ -22,7 +22,7 @@ def json(resp: Response, status_code: int = 200) -> tuple:
     """
     将Response对象转换为JSON格式
     """
-    return jsonify(resp), 200
+    return jsonify(asdict(resp)), 200
 
 def success_json(data: Any = None) -> dict:
     """
