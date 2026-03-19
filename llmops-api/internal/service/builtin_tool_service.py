@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from injector import inject
 from internal.core.tools.builtin_tools.providers import BuiltinProviderManager
 from internal.core.tools.builtin_tools.categories import BuiltinCategoryManager
+from internal.exception import NotFoundException
 from pydantic import BaseModel, Field
 from flask import current_app
 import os
@@ -61,12 +62,12 @@ class BuiltinToolService:
         # 1. 获取内置的服务提供商
         provider = self.builtin_provider_manager.get_provider(provider_name)
         if provider is None:
-            raise FileNotFoundError(f"该服务提供商不存在: {provider_name}")
+            raise NotFoundException(f"该服务提供商不存在: {provider_name}")
         
         # 2. 获取该服务提供商下的指定工具
         tool_entity = provider.get_tool_entity(tool_name)
         if tool_entity is None:
-            raise FileNotFoundError(f"该服务提供商下不存在该工具: {tool_name}")
+            raise NotFoundException(f"该服务提供商下不存在该工具: {tool_name}")
 
         # 3. 组装提供商和工具实体信息
         provider_entity = provider.provider_entity
@@ -89,7 +90,7 @@ class BuiltinToolService:
         # 1. 获取内置的服务提供商
         provider = self.builtin_provider_manager.get_provider(provider_name)
         if provider is None:
-            raise FileNotFoundError(f"该服务提供商不存在: {provider_name}")
+            raise NotFoundException(f"该服务提供商不存在: {provider_name}")
         
         # 2. 获取项目的根路径并拼接图标路径
         root_path = os.path.dirname(os.path.dirname(current_app.root_path))

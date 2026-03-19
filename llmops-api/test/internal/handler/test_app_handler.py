@@ -10,12 +10,18 @@ class TestAppHandler:
     """
     app控制器的测试类
     """
-    @pytest.mark.parametrize("query", [None, "你好，你是?"])
-    def test_completion(self, client, query):
+    @pytest.mark.parametrize(
+        "app_id, query",
+        [
+            ("8d62b2ef-391b-46d0-b851-e3e4165402e7", None),
+            ("8d62b2ef-391b-46d0-b851-e3e4165402e7", "你好，你是？")
+        ]   
+    )
+    def test_completion(self, app_id, query, client):
         """
         测试聊天接口
         """
-        resp = client.post("/app/completion", json={"query": query})
+        resp = client.post(f"/apps/{app_id}/debug", json={"query": query})
         assert resp.status_code == 200
         if query is None:
             assert resp.json.get("code") == HttpCode.VALIDATE_ERROR
