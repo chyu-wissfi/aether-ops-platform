@@ -56,12 +56,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 
 ## 01. 应用模块
 
-### 1.1 [todo]获取应用基础信息
+### 1.1 \[todo]获取应用基础信息
 
 - **接口说明**：传递对应的应用 id，获取当前应用的基础信息。
-
 - **接口信息**：`授权`+`GET:/apps/:app_id`
-
 - **接口参数**：
   - 请求参数：
     - `app_id -> uuid`：路由参数，必填，需要获取的应用 id。
@@ -75,9 +73,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `draft_updated_at -> int`：应用草稿的更新时间，类型为时间戳，单位为秒。
     - `updated_at -> int`：应用的更新时间，类型为时间戳，单位为秒。
     - `created_at -> int`：应用的创建时间，类型为时间戳，单位为秒。
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -96,12 +92,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.2 [todo]在个人空间下新增应用
+### 1.2 \[todo]在个人空间下新增应用
 
 - **接口说明**：该接口用于在个人空间下新增 Agent 应用，创建的 Agent 应用会添加一个默认的草稿配置信息，默认使用 `openai` 下的 `gpt-4o-mini` 模型，模型的默认参数为：`temperature=0.5`、`top_p=0.85`、`frequency_penalty=0.2`、`presence_penalty=0.2`、`max_tokens=8192`，该参数为相对 `平衡` 的状态。
-
 - **接口信息**：`授权`+`POST:/apps`
-
 - **接口参数**：
   - 请求参数：
     - `name -> str`：Agent 应用的名称，类型为字符串，长度不超过 40 个字符。
@@ -109,9 +103,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `description -> str`：可选参数，Agent 应用的描述信息，类型为字符串，长度不超过 800 个字符。
   - 响应参数：
     - `id -> uuid`：创建的 Agent 应用 id，类型为 uuid。
-
 - **请求示例**：
-
   ```bash
   POST:/apps
 
@@ -121,9 +113,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   	"description": "一个能帮你解答关于LLM应用产品开发的Agent智能体。"
   }
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -134,24 +124,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.3 [todo]删除指定的应用
+### 1.3 \[todo]删除指定的应用
 
 - **接口说明**：该接口用于删除指定的 Agent 智能体应用，删除之后，应用无法进行复原与调试，也无法使用开放 API 进行调试、用户无法访问该应用产生的所有会话信息等内容。
-
 - **接口信息**：`授权`+`POST:/apps/:app_id/delete`
-
 - **接口参数**：
   - 请求参数：
     - `app_id -> uuid`：需要删除的应用 id，类型为 uuid。
-
 - **请求示例**：
-
   ```bash
   POST:/apps/1550b71a-1444-47ed-a59d-c2f080fbae94/delete
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -160,12 +144,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.4 [todo]获取应用分页列表
+### 1.4 \[todo]获取应用分页列表
 
 - **接口说明**：该接口用于获取当前登录账号下创建的应用分页列表数据，该接口支持分页+搜索。
-
 - **接口信息**：`授权`+`GET:/apps`
-
 - **接口参数**：
   - 请求参数：
     - `current_page -> int`：可选参数，当前页数，默认为 1，类型为整型。
@@ -189,15 +171,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       - `page_size -> int`：每页的条数，类型为整型。
       - `total_page -> int`：数据的总页数，类型为整型。
       - `total_record -> int`：数据的总记录条数，类型为整型。
-
 - **请求示例**：
-
   ```bash
   GET:/apps?current_page=1&page_size=20&search_word=测试
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -229,26 +207,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.5 [todo]创建应用副本 API 接口
+### 1.5 \[todo]创建应用副本 API 接口
 
 - **接口说明**：该接口用于快速复制指定 Agent 应用，涵盖 Agent 应用的基础信息、草稿配置等内容，同时在复制配置的时候，也会检测对应的草稿配置。
-
 - **接口信息**：`授权`+`POST:/apps/:app_id/copy`
-
 - **接口参数**：
   - 请求参数：
     - `app_id -> uuid`：需要复制的 Agent 应用 id，类型为 uuid。
   - 响应参数：
     - `id -> uuid`：拷贝后的 Agent 应用 id，类型为 uuid。
-
 - **请求示例**：
-
   ```bash
   POST:/apps/1550b71a-1444-47ed-a59d-c2f080fbae94
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -259,21 +231,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.6 [todo]修改应用基础信息 API 接口
+### 1.6 \[todo]修改应用基础信息 API 接口
 
 - **接口说明**：该接口用于修改指定应用的基础信息 API 接口，该接口只能修改 Agent 应用的名字、icon、描述信息。
-
 - **接口信息**：`授权`+`POST:/apps/:app_id`
-
 - **接口参数**：
   - 请求参数：
     - `app_id -> uuid`：路由参数，需要修改的 Agent 智能体应用 id，类型为 uuid。
     - `name -> str`：Agent 应用的名称，类型为字符串，长度不超过 40 个字符。
     - `icon -> str`：Agent 应用的图标 URL 地址，类型为字符串。
     - `description -> str`：可选参数，Agent 应用的描述信息，类型为字符串，长度不超过 800 个字符。
-
 - **请求示例**：
-
   ```bash
   POST:/apps/46db30d1-3199-4e79-a0cd-abf12fa6858f
 
@@ -283,9 +251,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   	"description": "一个能帮你解答关于LLM应用产品开发的Agent智能体。"
   }
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -294,12 +260,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 1.7 [todo]获取特定应用的草稿配置信息
+### 1.7 \[todo]获取特定应用的草稿配置信息
 
 - **接口说明**：该接口用于获取指定应用的配置信息，并且永远只获取草稿配置，在创建应用的时候会同步创建草稿信息，并且在应用发布亦或者更新的时候，均会同步配置信息到草稿配置中，并且每次获取草稿配置的时候，都会检测关联的 `知识库`、`工具`、`工作流` 是否存在，如果不存在，则会清除对应数据后返回。
-
 - **接口信息**：`授权`+`GET:/apps/:app_id/draft-app-config`
-
 - **接口参数**：
   - 请求参数：
     - `app_id -> uuid`：路由参数，应用 id，类型为 uuid。
@@ -359,15 +323,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
         - `enable -> boolean`：是否启用输出审核，类型为布尔值，true 代表启用，false 代表未启用，当值为 true 时，触发敏感词时，会使用 \*\* 代替特定的敏感词进行输出。
     - `updated_at -> int`：草稿配置的更新时间，类型为时间戳。
     - `created_at -> int`：草稿配置的创建时间，类型为时间戳。
-
 - **请求示例**：
-
   ```bash
   GET:/apps/46db30d1-3199-4e79-a0cd-abf12fa6858f/draft-config
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -445,17 +405,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 ### 2.1 获取内置插件分类列表
 
 - **接口说明**：用于获取插件广场页面中所有插件的分类信息，该接口不支持分页，会一次性返回所有信息。
-
 - **接口信息**：`授权`+`GET:/builtin-tools/categories`
-
 - **接口参数**：
   - 响应参数：
     - `icon -> str`：插件分类的 icon 图标，所有 icon 都是 svg 图标的字符串。
     - `category -> str`：分类英文唯一标识名，例如 `search`、`image`、`weather` 等，用于在前端进行唯一标识判断。
     - `name -> str`：分类名称，例如 `搜索`、`图片` 等，用于在前端展示该分类的名称。
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -471,9 +427,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 ### 2.2 获取所有内置插件列表信息
 
 - **接口说明**：获取 LLMOps 项目中所有内置插件列表信息，该接口会一次性获取所有提供商/工具，无分页，适用于 `插件广场` 与 `AI应用编排` 页面。
-
 - **接口信息**：`授权`+`GET:/builtin-tools`
-
 - **接口参数**：
   - 响应参数：
     - `name -> str`：提供商的名称。
@@ -502,17 +456,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
         - `options -> list`：类型为下拉列表时需要配置的选项。
           - `value -> str`：下拉菜单对应的值。
           - `label -> str`：下拉菜单对应的标签。
-
     - `created_at -> int`：创建/发布该服务商插件的时间戳。
-
 - **请求示例**：
-
   ```bash
   GET: /builtin-tools
   ```
-
 - **响应示例**：
-
   ```json
   {
     "code": "success",
@@ -601,9 +550,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 ### 2.3 获取指定工具的信息
 
 - **接口说明**：根据传递的 `提供商名称` + `工具名称` 获取对应工具信息详情，该接口用于在 AI 应用编排页面，点击工具设置时进行相应的展示。
-
 - **接口信息**：`授权`+`GET:/builtin-tools/:provider/tools/:tool`
-
 - **接口参数**：
   - 请求参数：
     - `provider -> str`：路由参数，服务提供商对应的名字，例如 `google`、`dalle` 等。
@@ -636,15 +583,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
         - `value -> str`：下拉菜单对应的值。
         - `label -> str`：下拉菜单对应的标签。
     - `created_at -> int`：工具的创建时间。
-
 - **请求示例**：
-
   ```bash
   GET: /buildin-tools/google/tools/google_serper
   ```
-
 - **响应示例**：
-
   ```python
   {
       "code": "success",
@@ -705,21 +648,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 ### 2.4 获取内置插件提供商icon
 
 - **接口说明**：根据传递的 `服务提供商名称` 对应的 icon 信息，返回的是 icon 图片流，例如 svg 图片就是对应的源码，png/jpeg 等就是图片流信息。
-
 - **接口信息**：`GET:/builtin-tools/:provider/icon`
-
 - **接口参数**：
   - 请求参数：
     - `provider -> str`：服务提供商对应的名字，例如 `google`、`dalle` 等。
-
 - **请求示例**：
-
   ```python
   GET: /buildin-tools/google/icon
   ```
-
 - **响应示例**：
-
   ```bash
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
     <path d="M22.501 12.7332C22.501 11.8699 22.4296 11.2399 22.2748 10.5865H12.2153V14.4832H18.12C18.001 15.4515 17.3582 16.9099 15.9296 17.8898L15.9096 18.0203L19.0902 20.435L19.3106 20.4565C21.3343 18.6249 22.501 15.9298 22.501 12.7332Z" fill="#4285F4"/>
@@ -729,18 +666,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   </svg>
   ```
 
-### 2.5 [todo]获取自定义 API 工具提供者列表
+### 2.5 获取自定义 API 工具提供者列表
 
 - **接口说明**：获取特定账号创建的 API 插件/自定义工具信息，该接口携带分页，并支持搜索。
-
 - **接口信息**：`授权`+`GET:/api-tools`
-
 - **接口参数**：
-
   - 请求参数：
     - `search_word -> str`：可选参数，搜索词，用于搜索自定义 API 工具，默认为空代表不搜索任何内容。
     - `current_page -> int`：可选参数，代表当前页数，默认为 1。
-    - `page_size -> int`：可选参数，代表当前每页的数据条数，默认为 20，范围从 1~50。
+    - `page_size -> int`：可选参数，代表当前每页的数据条数，默认为 20，范围从 1\~50。
   - 响应参数：
     - `list -> list`：分页后的 API 插件列表，列表里的每一个元素都是一个字典。
       - `id -> uuid`：当前工具提供者对应的 id。
@@ -765,15 +699,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       - `page_size -> int`：每页的条数。
       - `total_page -> int`：总页数。
       - `total_record -> int`：总记录条数。
-
 - **请求示例**：
-
   ```bash
   /api-tools?search_word=&current_page=1&page_size=21
   ```
-
 - **响应示例**：
-
   ```json
   {
       "code": "success",
@@ -816,14 +746,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.7 [todo]创建自定义 API 工具提供者
+### 2.7 创建自定义 API 工具提供者
 
 - **接口说明**：用于将企业现有的 API 服务接入到 LLMOps 项目创建自定义 API 工具，对于该自定义工具，支持 GET+POST 两种 HTTP 方法的 URL 链接，并且对 OpenAPI-Schema 规范进行简化+调整，以让其更适配 LLMOps 项目。
-
 - **接口信息**：`授权`+`POST:/api-tools`
-
 - **接口参数**：
-
   - 请求参数：
     - `name -> str`：参数必填，工具提供商的名字，同一个账号下的工具提供商名字必须唯一，否则容易识别错误，名字的长度范围是 0-30 个字符。
     - `icon -> str`：参数必填，工具提供商的 icon 图标，类型为图片 URL 字符串。
@@ -831,9 +758,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `headers -> list`：接口附加的请求头信息，类型为列表，列表的每个元素都是一个字典，如果没有请求头信息则传递空列表即可。
       - `key -> str`：请求头对应的键。
       - `value -> str`：请求头对应的值。
-
 - **请求示例**：
-
   ```json
   {
       "name": "谷歌搜索",
@@ -847,9 +772,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       ]
   }
   ```
-
 - **响应示例**：
-
   ```bash
   {
   	"code": "success",
@@ -858,25 +781,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.8 [todo]删除自定义 API 工具提供者
+### 2.8 删除自定义 API 工具提供者
 
 - **接口说明**：用于删除特定的自定义 API 插件，删除对应的 API 插件后，关联的应用、工作流也无法使用该插件/工具（在应用对话交流、工作流运行之前都会检测对应的 API 插件是否存在，如果被删除了，均会剔除并无法使用）。
-
 - **接口信息**：`授权`+`POST:/api-tools/:provider_id/delete`
-
 - **接口参数**：
-
   - 请求参数：
     - `provider_id -> uuid`：路由参数，需要删除的 API 工具提供商 id，类型为 uuid。
-
 - **请求示例**：
-
   ```bash
   POST:/api-tools/e1baf52a-1be2-4b93-ad62-6fad72f1ec37/delete
   ```
-
 - **响应示例**：
-
   ```json
   {
   	"code": "success",
@@ -885,14 +801,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.9 [todo]更新自定义 API 工具提供者
+### 2.9 更新自定义 API 工具提供者
 
 - **接口说明**：用于更新自定义 API 工具信息，每次更新的时候，在后端都会删除原有工具信息，并记录创建新的工具数据，在后端使用 `provider_id+tool_name` 唯一标识进行判断，更新时如果同个账号出现重名，则会抛出错误。
-
 - **接口信息**：`授权`+`POST:/api-tools/:provider_id`
-
 - **接口参数**：
-
   - 请求参数：
     - `provider_id -> uuid`：路由参数，需要修改的 API 工具提供商 id，类型为 uuid。
     - `name -> str`：参数必填，工具提供商的名字，同一个账号下的工具提供商名字必须唯一，否则容易识别错误，名字的长度范围是 0-30 个字符。
@@ -901,12 +814,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `headers -> list`：接口附加的请求头信息，类型为列表，列表的每个元素都是一个字典，如果没有请求头信息则传递空列表即可。
       - `key -> str`：请求头对应的键。
       - `value -> str`：请求头对应的值。
-
 - **请求示例**：
-
   ```json
   POST:/api-tools/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
-  
+
   {
       "name": "",
       "icon": "",
@@ -916,9 +827,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       ]
   }
   ```
-
 - **响应示例**：
-
   ```json
   {
   	"code": "success",
@@ -927,14 +836,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.10 [todo]获取指定 API 工具提供者信息
+### 2.10 获取指定 API 工具提供者信息
 
 - **接口说明**：根据传递的工具提供者 id 获取对应的工具提供者详细信息。
-
 - **接口信息**：`授权`+`GET:/api-tools/:provider_id`
-
 - **接口参数**：
-
   - 请求参数：
     - `provider_id -> uuid`：路由参数，需要查看的 API 工具提供商 id，类型为 uuid。
   - 响应参数：
@@ -946,15 +852,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       - `key -> str`：请求头对应的键。
       - `value -> str`：请求头对应的值。
     - `created_at -> int`：该工具提供者的创建时间戳。
-
 - **请求示例**：
-
   ```bash
   GET:/api-tools/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
   ```
-
 - **响应示例**：
-
   ```json
   {
       "code": "success",
@@ -975,14 +877,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.11 [todo]获取指定 API 工具信息
+### 2.11 获取指定 API 工具信息
 
 - **接口说明**：根据传递的工具提供者 id + 工具的名称查看自定义 API 插件的相关信息，如果没有找到则返回 404 信息。
-
 - **接口信息**：`授权`+`GET:/api-tools/:provider_id/tools/:tool_name`
-
 - **接口参数**：
-
   - 请求参数：
     - `provider_id -> uuid`：路由参数，需要查看的 API 工具提供商 id，类型为 uuid。
     - `tool_name -> str`：路由参数，需要查看的 API 工具名称，类型为字符串。
@@ -1003,15 +902,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       - `headers -> list`：工具提供者的请求头列表信息，列表里的每一个元素都是一个字典。
         - `key -> str`：请求头对应的键。
         - `value -> str`：请求头对应的值。
-
 - **请求示例**：
-
   ```bash
   GET:/api-tools/46db30d1-3199-4e79-a0cd-abf12fa6858f/tools/GetCurrentName
   ```
-
 - **响应示例**：
-
   ```json
   {
       "code": "success",
@@ -1042,27 +937,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-### 2.12 [todo]校验 OpenAPI 字符串是否正确
+### 2.12 校验 OpenAPI 字符串是否正确
 
 - **接口说明**：校验传递的 OpenAPI-Schema 字符串是否正确。
-
 - **接口信息**：`授权`+`POST:/api-tools/validate-openapi-schema`
-
 - **接口参数**：
-
   - 请求参数：
     - `openapi_schema -> str`：需要校验的 openapi-schema 字符串，该字符串的规则符合项目 OpenAPI-Schema 规范，该接口只校验数据是否符合规则，不校验对应的提供商名字、工具名字等是否唯一。
-
 - **请求示例**：
-
   ```json
   {
       "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}"
   }
   ```
-
 - **响应示例**：
-
   ```json
   {
   	"code": "success",
@@ -1070,7 +958,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   	"message": "openapi-schema数据格式无误"
   }
   ```
-
   ```json
   {
   	"code": "validate_error",
@@ -1079,15 +966,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   }
   ```
 
-
-
-##  LLMOps 项目扩展资料
+## LLMOps 项目扩展资料
 
 ### 01. 项目 OpenAPI-Schema 规范
 
 在 LLMOps 项目中，如果使用完整的 OpenAPI-Schema 规范来描述 API 工具会显得特别繁琐，所以我对 OpenAPI-Schema 规范进行相应的简化+调整，做出如下约定：
 
-1. 所有的外部 API 请求类型只有 GET 和 POST，并没有 DELETE/PUT 等方法，一个路径下可以拥有多个方法，例如同时拥有 GET 和 POST，在项目中使用 Operation_Id 进行唯一标识判断；
+1. 所有的外部 API 请求类型只有 GET 和 POST，并没有 DELETE/PUT 等方法，一个路径下可以拥有多个方法，例如同时拥有 GET 和 POST，在项目中使用 Operation\_Id 进行唯一标识判断；
 2. 基础的 API 地址有且只有一个，被添加到 server 中，该规范是 LLMOps 项目自行约定的，并不是 OpenAPI 规范；
 3. 接口的数据可以作为参数被附加到 `Header/Query/Cookie/Path/RequestBody` 这 4 个位置；
 4. 所有的参数都使用 `parameters` 进行记录，`in` 参数的类型支持 `path/query/header/cookie/request_body` 中，分别代表 `请求路径`、`查询query`、`header请求头`、`cookie`、`RequestBody(只有POST才有)` 。
@@ -1135,7 +1020,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 }
 ```
 
-例如当前有一个根据传递的英文单词查询字典信息的 API，地址为：https://dict.youdao.com/suggest?q=love&doctype=json，其参数如下：
+例如当前有一个根据传递的英文单词查询字典信息的 API，地址为：<https://dict.youdao.com/suggest?q=love&doctype=json，其参数如下：>
 
 1. `q -> str`：需要检索字典信息的英文单词，例如 `love`、`computer`。
 2. `doctype -> str`：可选参数，返回数据的类型，支持 json 和 xml 两种格式，默认返回 xml 格式的数据。

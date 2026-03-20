@@ -9,7 +9,7 @@ from .exception import (
     NotFoundException, 
     UnauthorizedException,
     ForbiddenException,
-    ValidationException
+    ValidateErrorException
 )
 
 __all__ = [
@@ -18,5 +18,5 @@ __all__ = [
     "NotFoundException",
     "UnauthorizedException",
     "ForbiddenException",
-    "ValidationException"
+    "ValidateErrorException"
 ]

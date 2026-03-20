@@ -44,7 +44,7 @@ class ForbiddenException(CustomException):
     """
     code: HttpCode = HttpCode.FORBIDDEN
 
-class ValidationException(CustomException):
+class ValidateErrorException(CustomException):
     """
     数据验证异常类
     """
