@@ -23,7 +23,7 @@ from langchain_core.tracers import Run
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_community.chat_message_histories import FileChatMessageHistory
-
+from internal.service import ApiToolService
 
 
 @inject
@@ -34,6 +34,7 @@ class AppHandler:
     """
     app_service: AppService
     vector_database_service: VectorDatabaseService
+    api_tool_service: ApiToolService
 
     def create_app(self) -> dict:
         """
@@ -143,9 +144,8 @@ class AppHandler:
         """
         测试接口
         """
-        return success_json()
+        return self.api_tool_service.api_tool_invoke()
 
-        # raise FailException("数据未找到")
 
 
 # if __name__ == "__main__":

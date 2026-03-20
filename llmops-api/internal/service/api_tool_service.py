@@ -212,7 +212,7 @@ class ApiToolService(BaseService):
         return OpenAPISchema(**data)
 
     def api_tool_invoke(self):
-        provider_id = "d72bb9d7-8794-4caf-bd60-1f992c537065"
+        provider_id = "f34419f5-f840-48fc-8b03-b64a58a93ccf"
         tool_name = "YoudaoSuggest"
 
         api_tool = self.db.session.query(ApiTool).filter(

@@ -20,9 +20,45 @@ const router = createRouter({
           component: () => import('@/views/pages/HomeView.vue'),
         },
         {
-          path: 'space/apps',
-          name: 'space-apps-list',
-          component: () => import('@/views/space/apps/ListView.vue'),
+          path: 'space',
+          component: () => import('@/views/space/SpaceLayoutView.vue'),
+          children: [
+            {
+              path: 'apps',
+              name: 'space-apps-list',
+              component: () => import('@/views/space/apps/ListView.vue'),
+            },
+            {
+              path: 'tools',
+              name: 'space-tools-list',
+              component: () => import('@/views/space/tools/ListView.vue'),
+            },
+            {
+              path: 'workflows',
+              name: 'space-workflows-list',
+              component: () => import('@/views/space/workflows/ListView.vue'),
+            },
+            {
+              path: 'datasets',
+              name: 'space-datasets-list',
+              component: () => import('@/views/space/datasets/ListView.vue'),
+            },
+          ],
+        },
+        {
+          path: 'store/apps',
+          name: 'store-apps-list',
+          component: () => import('@/views/store/apps/ListView.vue'),
+        },
+        {
+          path: 'store/tools',
+          name: 'store-tools-list',
+          component: () => import('@/views/store/tools/ListView.vue'),
+        },
+        {
+          path: 'open',
+          name: 'open-index',
+          component: () => import('@/views/open/IndexView.vue'),
         },
       ],
     },

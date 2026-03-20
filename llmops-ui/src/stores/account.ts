@@ -3,8 +3,8 @@ import { ref } from 'vue'
 
 // 初始值
 const initAccount = {
-  name: '慕小课',
-  email: 'imooc@163.com',
+  name: 'Wissfi',
+  email: 'chyu.wissfi@gmail.com',
   avatar: '',
 }
 
