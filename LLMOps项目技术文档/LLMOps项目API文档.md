@@ -104,15 +104,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   - 响应参数：
     - `id -> uuid`：创建的 Agent 应用 id，类型为 uuid。
 - **请求示例**：
+
   ```bash
   POST:/apps
-  
+
   {
   	"name": "LLM应用产品经理",
   	"icon": "https://wissfi.com/2025/12/14/218e5217-ab10-4634-9681-022867955f1b.png",
   	"description": "一个能帮你解答关于LLM应用产品开发的Agent智能体。"
   }
   ```
+
 - **响应示例**：
   ```json
   {
@@ -242,15 +244,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `icon -> str`：Agent 应用的图标 URL 地址，类型为字符串。
     - `description -> str`：可选参数，Agent 应用的描述信息，类型为字符串，长度不超过 800 个字符。
 - **请求示例**：
+
   ```bash
   POST:/apps/46db30d1-3199-4e79-a0cd-abf12fa6858f
-  
+
   {
   	"name": "LLM应用产品经理",
   	"icon": "https://wissfi.com/2025/12/14/218e5217-ab10-4634-9681-022867955f1b.png",
   	"description": "一个能帮你解答关于LLM应用产品开发的Agent智能体。"
   }
   ```
+
 - **响应示例**：
   ```json
   {
@@ -706,43 +710,46 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **响应示例**：
   ```json
   {
-      "code": "success",
-      "data": {
-          "list": [
-              {
-                  "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
-                  "name": "高德工具包",
-                  "icon": "https://xxxxx/gaode.png",
-                  "description": "查询ip所在地、天气预报、路线规划等高德工具包",
-                  "tools": [
-                      {
-                          "id": "d400cec0-892f-49ab-8f72-821b88c1aaa9",
-                          "description": "根据传递的城市名获取指定城市的天气预报，例如：广州。",
-                          "name": "GetCurrentWeather",
-                          "inputs": [
-                              {
-                                  "type": "str",
-                                  "required": true,
-                                  "name": "query",
-                                  "description": "需要搜索的查询语句"
-                              }
-                          ]
-                      }
-                  ],
-                  "headers": [
-                      {"key": "Authorization", "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"}
-                  ],
-                  "created_at": 1721460914
-              }
+    "code": "success",
+    "data": {
+      "list": [
+        {
+          "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+          "name": "高德工具包",
+          "icon": "https://xxxxx/gaode.png",
+          "description": "查询ip所在地、天气预报、路线规划等高德工具包",
+          "tools": [
+            {
+              "id": "d400cec0-892f-49ab-8f72-821b88c1aaa9",
+              "description": "根据传递的城市名获取指定城市的天气预报，例如：广州。",
+              "name": "GetCurrentWeather",
+              "inputs": [
+                {
+                  "type": "str",
+                  "required": true,
+                  "name": "query",
+                  "description": "需要搜索的查询语句"
+                }
+              ]
+            }
           ],
-          "paginator": {
-              "current_page": 1,
-              "page_size": 21,
-              "total_page": 1,
-              "total_record": 2
-          }
-      },
-      "message": ""
+          "headers": [
+            {
+              "key": "Authorization",
+              "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
+            }
+          ],
+          "created_at": 1721460914
+        }
+      ],
+      "paginator": {
+        "current_page": 1,
+        "page_size": 21,
+        "total_page": 1,
+        "total_record": 2
+      }
+    },
+    "message": ""
   }
   ```
 
@@ -761,15 +768,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **请求示例**：
   ```json
   {
-      "name": "有道词典",
-      "icon": "https://cdn.xxxxx.com/google.png",
-      "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}",
-      "headers": [
-          {
-              "key": "Authorization",
-              "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
-          }
-      ]
+    "name": "有道词典",
+    "icon": "https://cdn.xxxxx.com/google.png",
+    "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}",
+    "headers": [
+      {
+        "key": "Authorization",
+        "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
+      }
+    ]
   }
   ```
 - **响应示例**：
@@ -795,9 +802,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **响应示例**：
   ```json
   {
-  	"code": "success",
-  	"data": {},
-  	"message": "删除自定义API插件成功"
+    "code": "success",
+    "data": {},
+    "message": "删除自定义API插件成功"
   }
   ```
 
@@ -815,9 +822,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       - `key -> str`：请求头对应的键。
       - `value -> str`：请求头对应的值。
 - **请求示例**：
+
   ```json
   POST:/api-tools/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
-  
+
   {
       "name": "",
       "icon": "",
@@ -827,12 +835,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
       ]
   }
   ```
+
 - **响应示例**：
   ```json
   {
-  	"code": "success",
-  	"data": {},
-  	"message": "更新自定义API插件成功"
+    "code": "success",
+    "data": {},
+    "message": "更新自定义API插件成功"
   }
   ```
 
@@ -859,21 +868,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **响应示例**：
   ```json
   {
-      "code": "success",
-      "data": {
-          "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
-          "name": "高德工具包",
-          "icon": "https://cdn.xxxxx.com/google.png",
-          "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}",
-          "headers": [
-              {
-                  "key": "Authorization",
-                  "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
-              }
-          ],
-          "created_at": 1721460914
-      },
-      "message": ""
+    "code": "success",
+    "data": {
+      "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+      "name": "高德工具包",
+      "icon": "https://cdn.xxxxx.com/google.png",
+      "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}",
+      "headers": [
+        {
+          "key": "Authorization",
+          "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
+        }
+      ],
+      "created_at": 1721460914
+    },
+    "message": ""
   }
   ```
 
@@ -909,31 +918,34 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **响应示例**：
   ```json
   {
-      "code": "success",
-      "data": {
-          "id": "d400cec0-892f-49ab-8f72-821b88c1aaa9",
-          "name": "GetCurrentWeather",
-          "description": "根据传递的城市名获取指定城市的天气预报，例如：广州。",
-          "inputs": [
-              {
-                  "type": "str",
-                  "required": true,
-                  "name": "query",
-                  "description": "需要搜索的查询语句"
-              }
-          ],
-          "provider": {
-              "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
-              "name": "高德工具包",
-              "icon": "https://cdn.xxxx.com/gaode.png",
-              "description": "查询ip所在地、天气预报、路线规划等高德工具包",
-              "headers": [
-                  {"key": "Authorization", "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"}
-              ],
-              "created_at": 1721460914
+    "code": "success",
+    "data": {
+      "id": "d400cec0-892f-49ab-8f72-821b88c1aaa9",
+      "name": "GetCurrentWeather",
+      "description": "根据传递的城市名获取指定城市的天气预报，例如：广州。",
+      "inputs": [
+        {
+          "type": "str",
+          "required": true,
+          "name": "query",
+          "description": "需要搜索的查询语句"
+        }
+      ],
+      "provider": {
+        "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+        "name": "高德工具包",
+        "icon": "https://cdn.xxxx.com/gaode.png",
+        "description": "查询ip所在地、天气预报、路线规划等高德工具包",
+        "headers": [
+          {
+            "key": "Authorization",
+            "value": "Bearer QQYnRFerJTSEcrfB89fw8prOaObmrch8"
           }
-      },
-      "message": ""
+        ],
+        "created_at": 1721460914
+      }
+    },
+    "message": ""
   }
   ```
 
@@ -947,35 +959,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **请求示例**：
   ```json
   {
-      "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}"
+    "openapi_schema": "{\"description\":\"这是一个查询对应英文单词字典的工具\",\"server\":\"https://dict.youdao.com\",\"paths\":{\"/suggest\":{\"get\":{\"description\":\"根据传递的单词查询其字典信息\",\"operationId\":\"YoudaoSuggest\",\"parameters\":[{\"name\":\"q\",\"in\":\"query\",\"description\":\"要检索查询的单词，例如love/computer\",\"required\":true,\"type\":\"str\"},{\"name\":\"doctype\",\"in\":\"query\",\"description\":\"返回的数据类型，支持json和xml两种格式，默认情况下json数据\",\"required\":false,\"type\":\"str\"}]}}}}"
   }
   ```
 - **响应示例**：
   ```json
   {
-  	"code": "success",
-  	"data": {},
-  	"message": "openapi-schema数据格式无误"
+    "code": "success",
+    "data": {},
+    "message": "openapi-schema数据格式无误"
   }
   ```
   ```json
   {
-  	"code": "validate_error",
-  	"data": {},
-  	"message": "openapi-schema校验失败，info不能为空"
+    "code": "validate_error",
+    "data": {},
+    "message": "openapi-schema校验失败，info不能为空"
   }
   ```
 
 ## 03. 文件上传模块
 
-### 3.1 [todo]将文件上传到腾讯云cos
+### 3.1 将文件上传到腾讯云cos
 
 - **接口说明**：将文件上传到腾讯云对象存储中，该接口主要用于上传文件，调用接口后返回对应的文件 id、名字、云端位置等信息，主要用于知识库、工具、多模态应用对话。
-
 - **接口信息**：`授权`+`POST:/upload-files/file`
-
 - **接口参数**：
-
   - 请求参数：
     - `file -> File`：需要上传的文件，最多支持上传一个文件，最大支持的文件不能超过 15 MB。
   - 响应参数：
@@ -987,54 +996,883 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
     - `extension -> str`：文件的扩展名，例如 `.md`。
     - `mime_type -> str`：文件 mime-type 类型推断。
     - `created_at -> str`：文件的创建时间戳。
-
 - **响应示例**：
-
   ```json
   {
-      "code": "success",
-      "data": {
-          "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
-          "account_id": "e1baf52a-1be2-4b93-ad62-6fad72f1ec37",
-          "name": "项目API文档.md",
-          "key": "2024/05/14/218e5217-ab10-4634-9681-022867955f1b.md",
-          "size": 30241,
-          "extension": ".md",
-          "mime_type": "txt",
-          "created_at": 1721460914
-      },
-      "message": ""
+    "code": "success",
+    "data": {
+      "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+      "account_id": "e1baf52a-1be2-4b93-ad62-6fad72f1ec37",
+      "name": "项目API文档.md",
+      "key": "2024/05/14/218e5217-ab10-4634-9681-022867955f1b.md",
+      "size": 30241,
+      "extension": ".md",
+      "mime_type": "txt",
+      "created_at": 1721460914
+    },
+    "message": ""
   }
   ```
 
-### 3.2 [todo]将图片上传到腾讯云cos
+### 3.2 将图片上传到腾讯云cos
 
 - **接口说明**：将图片上传到腾讯云 cos 对象存储中，该接口用于需要上传图片的模块，接口会返回图片的 URL 地址。
-
 - **接口信息**：`授权`+`POST:/upload-files/image`
-
 - **接口参数**：
-
   - 请求参数：
     - `file -> File`：需要上传的图片文件，支持上传 jpg、jpeg、png、gif，最大不能超过 15 MB。
   - 响应参数：
     - `image_url -> str`：上传图片对应的 URL 链接。
-
 - **响应示例**：
-
   ```json
+  {
+    "code": "success",
+    "data": {
+      "image_url": "https://cdn.xxxxx.com/2024/05/14/218e5217-ab10-4634-9681-022867955f1b.png"
+    },
+    "message": ""
+  }
+  ```
+
+## **04. 知识库模块**
+
+### **4.1 [todo]获取知识库列表**
+
+- **接口说明**：用于获取当前登录账号的知识库列表信息，该接口支持搜索+分页，传递搜索词为空时代表不搜索。
+- **接口信息**：`授权`+`GET:/datasets`
+- **接口参数**：
+  - 请求参数：
+    - `search_word -> str`：可选参数，搜索词，用于知识库名称模糊搜索，默认为空代表不搜索任何内容。
+    - `current_page -> int`：可选参数，代表当前页数，默认为 1。
+    - `page_size -> int`：可选参数，代表当前每页的数据条数，默认为 20，范围从 1\~50。
+  - 响应参数：
+    - `list -> list`：分页后的知识库列表信息。
+      - `id -> uuid`：知识库对应的 id，类型为 uuid。
+      - `name -> str`：知识库对应的名称。
+      - `icon -> str`：知识库对应的图标。
+      - `description -> str`：知识库描述信息。
+      - `document_count -> int`：该知识库下的文档数。
+      - `character_count -> int`：该知识库拥有的文档的总字符数。
+      - `related_app_count -> int`：该知识库关联的 APP 数量。
+      - `updated_at -> int`：知识库的最近编辑时间，类型为时间戳。
+      - `created_at -> int`：知识库的创建时间，类型为时间戳。
+    - `paginator -> dict`：分页字典信息。
+      - `current_page -> int`：当前的页数。
+      - `page_size -> int`：每页的条数。
+      - `total_page -> int`：总页数。
+      - `total_record -> int`：总记录条数。
+- **响应示例**：
+  ```
   {
       "code": "success",
       "data": {
-          "image_url": "https://cdn.imooc.com/2024/05/14/218e5217-ab10-4634-9681-022867955f1b.png"
+          "list": [
+              {
+                  "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+                  "name": "Wissfi-LLMOps知识库",
+                  "icon": "https://cdn.xxxxx.com/dataset.png",
+                  "description": "JavaScript 是一种高级编程语言，用于创建交互式网页和动态效果。JavaScript 在前端开发中扮演着非常重要的角色，因此学习 JavaScript 对于初级前端工程师来说非常必要。JavaScript...",
+                  "document_count": 10,
+                  "character_count": 14651,
+                  "related_app_count": 2,
+                  "updated_at": 1721460914,
+                  "created_at": 1721460914
+              }
+          ],
+          "paginator": {
+              "current_page": 1,
+              "page_size": 21,
+              "total_page": 1,
+              "total_record": 2
+          }
       },
       "message": ""
   }
   ```
 
+### **4.2 [todo]创建知识库**
 
+- **接口说明**：根据传递的信息创建知识库，在同一个账号下，只能创建一个同名的知识库，避免在引用的时候发生误解。
+- **接口信息**：`授权`+`POST:/datasets`
+- **接口参数**：
+  - 请求参数：
+    - `name -> str`：知识库的名称，在同一个账号下，只能创建一个同名的知识库，逻辑和 `自定义API插件` 一样，知识库的名称最长不能超过 100 个字符。
+    - `icon -> str`：知识库的 icon 图标地址，在前端可以调用 `图片上传接口` 获取 URL 链接后提交。
+    - `description -> str`：可选参数，知识库的描述信息，描述最大不能超过 2000 个字符，当该参数没有填写时，会自动生成类似 `Useful for when you want to answer queries about the xxx` 的描述，在后端确保该字段永远不会为空。
+- **请求示例**：
+  ```
+  {
+      "name": "Wissfi-LLMOps知识库",
+      "icon": "https://cdn.xxxxx.com/dataset.jpg",
+      "description": "Useful for when you want to answer queries about the Wissfi-LLMOps知识库"
+  }
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {},
+       "message": "创建知识库成功"
+   }
+  ```
 
+### **4.3 [todo]更新指定知识库信息**
 
+- **接口说明**：该接口主要用于更新指定的知识库信息，涵盖：知识库名称、图标、描述等信息。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：需要更新的知识库 id，类型为 uuid，该参数为路由参数。
+    - `name -> str`：必填参数，需要更新的知识库名称，知识库名称也必须保证唯一，长度不能超过 100 个字符。
+    - `icon -> str`：必填参数，需要更新的知识库图标，类型为图标的 URL 地址。
+    - `description -> str`：可选参数，需要更新的知识库描述，长度不超过 2000 个字符，如果为空，会先删除原有的描述信息，并且在后端自动生成类似 `Useful for when you want to answer queries about the xxx` 的描述，在后端确保该字段永远不会为空。
+- **请求示例**：
+  ```
+   POST:/dataset/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
+   ​
+   {
+       "name": "Wissfi-LLMOps知识库",
+       "icon": "https://cdn.xxxxx.com/dataset.jpg",
+       "description": "Useful for when you want to answer queries about the Wissfi-LLMOps知识库"
+   }
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {},
+       "message": "更新知识库成功"
+   }
+  ```
+
+### **4.4 [todo]删除指定的知识库**
+
+- **接口说明**：用于删除指定的知识库，删除知识库后，在后端会将关联的应用配置、知识库下的所有文档/文档片段/查询语句也进行一并删除（该接口为耗时接口，将使用异步/消息队列的形式来实现），删除后以前关联的应用将无法引用该知识库。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/delete`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：需要删除的知识库 id，类型为 uuid，该参数为路由参数。
+- **请求示例**：
+  ```
+  POST:/dataset/e1baf52a-1be2-4b93-ad62-6fad72f1ec37/delete
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {},
+       "message": "删除知识库成功"
+   }
+  ```
+
+### **4.5 [todo]获取指定的知识库详情**
+
+- **接口说明**：用于获取指定的知识库详情信息。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，需要获取的知识库 id，类型为 uuid。
+  - 响应参数：
+    - `id -> uuid`：知识库 id，类型为 uuid。
+    - `name -> str`：知识库名称，类型为字符串。
+    - `icon -> str`：知识库的 icon 图标地址，类型为字符串。
+    - `description -> str`：知识库的描述信息，类型为字符串。
+    - `document_count -> int`：知识库下的文档数量，类型为整型。
+    - `hit_count -> int`：知识库的文档总命中次数，该知识库下的每一个文档被命中，则次数+1，如果一次查询命中多个同属于同一个文档的片段，该文档的命中次数也只+1，这样计算会更加均衡（计算逻辑会更简单）。
+    - `related_app_count -> int`：知识库关联的 AI/Agent 应用数，类型为整型。
+    - `character_count -> int`：该知识库拥有的文档的总字符数。
+    - `updated_at -> int`：知识库的最后编辑时间。
+    - `created_at -> int`：知识库的创建时间。
+- **请求示例**：
+  ```
+  GET:/dataset/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {
+           "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+           "name": "Wissfi-LLMOps知识库",
+           "icon": "https://cdn.xxxxx.com/dataset.png",
+           "description": "JavaScript 是一种高级编程语言，用于创建交互式网页和动态效果。JavaScript 在前端开发中扮演着非常重要的角色，因此学习 JavaScript 对于初级前端工程师来说非常必要。JavaScript...",
+           "document_count": 10,
+           "character_count": 14651,
+           "hit_count": 10,
+           "related_app_count": 2,
+           "updated_at": 1721460914,
+           "created_at": 1721460914
+       },
+       "message": ""
+   }
+  ```
+
+### **4.6 [todo]指定知识库进行召回测试**
+
+- **接口说明**：使用指定的知识库进行召回测试，用于检测不同的查询 query 在数据库中的检索效果，每次执行召回测试的时候都会将记录存储到 `最近查询列表` 中，返回的数据为检索到的 `文档片段` 列表。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/hit`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，需要进行召回测试的知识库 id，类型为 uuid。
+    - `query -> str`：进行召回测试的查询语句，类型为字符串，长度不超过 200 个字符。
+    - `retrieval_strategy -> str`：检索策略，类型为字符串，支持的值为 `full_text(全文/关键词检索)`、`semantic(向量/相似性检索)`、`hybrid(混合检索)`。
+    - `k -> int`：最大召回数量，类型为整型，数据范围为 0-10，必填参数。
+    - `score -> float`：最小匹配度，类型为浮点型，范围从 0-1，保留 2 位小数，数字越大表示相似度越高。
+  - 响应参数：
+    - `id -> uuid`：文档片段的 id，类型为 uuid。
+    - `document -> dict`：片段归属的文档信息。
+      - `id -> uuid`：文档 id，类型为 uuid。
+      - `name -> string`：文档的名称，类型为字符串。
+      - `extension -> string`：文档的扩展名。
+      - `mime_type -> string`：文档的 mime_type 类型推断。
+    - `dataset_id -> uuid`：片段归属的 `知识库id`，类型为 uuid。
+    - `score -> float`：片段的召回得分，类型为浮点型，数值范围从 0-1，只有检索类型为 `相似性检索` 的时候才会返回得分，`full_text` 和 `hybrid` 这两种检索策略不会计算召回得分（返回结果为 0）。
+    - `position -> int`：片段在文档内的位置，数字越小越靠前（自然排序）。
+    - `content -> str`：片段的内容，类型为字符串。
+    - `keywords -> list[str]`：关键词列表，列表的元素类型为字符串。
+    - `character_count -> int`：片段的字符串长度，类型为整型。
+    - `token_count -> int`：片段的 token 数，类型为整型。
+    - `hit_count -> int`：片段被命中的次数，类型为整型。
+    - `enabled -> bool`：片段是否启用，true 表示启用，false 表示禁用（人为禁用或者程序处理异常、未处理完导致的禁用），只有当 `status` 为 `completed(完成)` 时，enabled 才有可能为 true。
+    - `disabled_at -> int`：片段被人为禁用的时间，为 0 表示没有人为禁用，类型为整型。
+    - `status -> string`：片段的状态，涵盖 `waiting(等待处理)`、`indexing(构建索引)`、`completed(构建完成)`、`error(错误)` 等状态，不同的状态代表不同的处理程度。
+    - `error -> string`：错误信息，类型为字符串，当后端程序处理出现错误的时候，会记录错误信息。
+    - `updated_at -> int`：片段的最后更新时间，类型为时间戳。
+    - `created_at -> int`：片段的创建时间，类型为时间戳。
+- **请求示例**：
+  ```
+   POST:/dataset/e1baf52a-1be2-4b93-ad62-6fad72f1ec37/hit
+   ​
+   {
+       "query": "LLMOps",
+       "retrieval_strategy": "hybrid",
+       "k": 10,
+       "score": 0.4
+   }
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": [
+           {
+               "id": "b7087193-8e1b-4e88-8ae4-48a0f90a8ad5",
+               "document": {
+                   "id": "6a266b4b-d03b-4066-a4bb-f64abfe23b9d",
+                   "name": "Wissfi-LLMOps项目API文档.md",
+                   "extension": "md",
+                   "mime_type": "md"
+               },
+               "dataset_id": "bde70d64-cbcc-47e7-a0f5-b51200b87c7c",
+               "position": 1,
+               "score": 0.54,
+               "content": "为了借助社交产品的流量，让用户主动分享APP中的内容到社交平台来达到拉新和促活的目的，市场上绝大多数APP都有第三方分享的功能，它是内容分发的最有效途径，并且大大降低了企...",
+               "keywords": ["社交", "App", "成本", "功能", "内容分发"],
+               "character_count": 487,
+               "token_count": 407,
+               "hit_count": 1,
+               "enabled": true,
+               "disabled_at": 0,
+               "status": "completed",
+               "error": "",
+               "updated_at": 1726858854,
+               "created_at": 1726858854
+           }
+       ]
+   }
+  ```
+
+### **4.7 [todo]获取指定知识库最近的查询列表**
+
+- **接口说明**：用于获取指定知识库最近的查询列表，该接口会返回最近的 10 条记录，没有分页+搜索功能，返回的数据是按照 `created_at` 进行倒序，即数据越新越靠前。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/queries`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，需要获取最近查询的知识库 id，类型为 uuid。
+  - 响应参数：
+    - `id -> uuid`：查询的记录 id，类型为 uuid。
+    - `dataset_id -> uuid`：查询记录关联的知识库 id，类型为 uuid。
+    - `query -> str`：查询的 query 语句，类型为字符串。
+    - `source -> str`：查询的来源信息，支持 `Hit Testing(召回测试)`、`App(AI/Agent应用调用)`
+    - `created_at -> int`：查询的时间戳，类型为整型。
+- **请求示例**：
+  ```
+  GET:/dataset/e1baf52a-1be2-4b93-ad62-6fad72f1ec37/query
+  ```
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": [
+          {
+              "id": "26834b62-8bb4-410b-a626-00aded4892b9",
+              "dataset_id": "e1baf52a-1be2-4b93-ad62-6fad72f1ec37",
+              "query": "Wissfi-LLMOps是什么?",
+              "source": "Hit Testing",
+              "created_at": 1726858849
+          }
+      ],
+      "message": ""
+  }
+  ```
+
+### **4.8 [todo]获取指定知识库的文档列表**
+
+- **接口说明**：用于获取指定知识库下的文档列表，该接口支持搜索+分页，如果传递的搜索词为空代表不搜索任何内容，这里的搜索词使用 `文档名称` 进行模糊匹配。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/documents`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，需要获取文档列表归属的知识库 id，类型为 uuid。
+    - `search_word -> str`：可选参数，搜索词，用于模糊匹配搜索文档名称，默认为空代表不搜索任何内容。
+    - `current_page -> int`：可选参数，代表当前页数，默认为 1。
+    - `page_size -> int`：可选参数，代表当前每页的数据条数，默认为 20，范围从 1\~50。
+  - 响应参数：
+    - `list -> list`：分页后的文档列表信息。
+      - `id -> uuid`：文档的 id，类型为 uuid。
+      - `name -> str`：文档的名字，类型为字符串。
+      - `character_count -> int`：文档的字符总数，类型为整型。
+      - `hit_count -> int`：文档的召回命中次数，类型为整型。
+      - `position -> int`：文档在知识库中的位置，数字越小越靠前。
+      - `enabled -> bool`：文档是否开启，类型为布尔值，如果为 true 则表示开启，false 表示关闭，只有当状态为 `completed(构建完成)` 时该接口才可以设置为 true。
+      - `disabled_at -> int`：文档的禁用时间（人为禁用的时候记录），类型为时间戳，如果开启则为 0。
+      - `status -> string`：文档的状态，类型为字符串，涵盖 `waiting(等待中)`、`parsing(解析处理中)`、`splitting(分割中)`、`indexing(构建索引中)`、`completed(构建完成)`、`error(出错)` 等，只有当构建完成时 enabled 才起作用。
+      - `error -> string`：错误信息，如果没有错误则为空字符串，当出现错误的时候，在前端 UI 界面可以予以相关提示。
+      - `updated_at -> int`：文档的更新时间戳，类型为整型。
+      - `created_at -> int`：文档的创建时间戳，类型为整型。
+    - `paginator -> dict`：分页信息字典。
+      - `current_page -> int`：当前的页数。
+      - `page_size -> int`：每页的条数。
+      - `total_page -> int`：总页数。
+      - `total_record -> int`：总记录条数。
+- **请求示例**：
+  ```
+  GET:/datasets/46db30d1-3199-4e79-a0cd-abf12fa6858f/documents
+  ```
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {
+          "list": [
+              {
+                  "id": "bde70d64-cbcc-47e7-a0f5-b51200b87c7c",
+                  "name": "LLMOps项目提示词.md",
+                  "character_count": 4700,
+                  "hit_count": 0,
+                  "position": 21,
+                  "enabled": true,
+                  "disabled_at": 0,
+                  "status": "completed",
+                  "error": "",
+                  "updated_at": 1726949586,
+                  "created_at": 1726949586
+              }
+          ],
+          "paginator": {
+              "current_page": 1,
+              "page_size": 21,
+              "total_page": 1,
+              "total_record": 2
+          }
+      },
+      "message": ""
+  }
+  ```
+
+### **4.9 [todo]在指定知识库下新增文档**
+
+- **接口说明**：该接口用于在指定的知识库下添加新文档，该接口后端的服务会长时间进行处理，所以在后端服务中，创建好基础的 `文档信息` 后接口就会响应前端，在前端关闭页面/接口不影响后端逻辑的执行，该接口一次性最多可以上传 10 份文档。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，标识需要添加文档的知识库 id，类型为 uuid。
+    - `upload_file_ids -> list[uuid]`：必填参数，传递需要新增到知识库中的 `文件id列表`，最多支持上传 10 份文件，要想获取 `文件id`，可以调用 `文件上传接口`。
+    - `process_type -> str`：必填参数，处理类型，支持 `automatic(自动模式)` 和 `custom(自定义)`。
+    - `rule -> dict`：可选参数，当处理类型为 `custom` 时为必填参数。
+      - `pre_process_rules -> list`：预处理规则列表，涵盖 `id` 和 `enabled` 两个属性。
+        - `id -> str`：预处理标识，支持 `remove_extra_space(移除多余空格)` 和 `remove_url_and_email(移除链接和邮箱)`
+        - `enabled -> bool`：对应的预处理是否开启。
+      - `segment -> dict`：片段的处理规则，包含分隔符、片段大小、片段之间的重叠。
+        - `separators -> list[str]`：片段的分隔符列表，支持正则匹配。
+        - `chunk_size -> int`：每个片段的最大 Token 数，类型为整型。
+        - `chunk_overlap -> int`：每个片段之间的重叠度，类型为整型。
+  - **响应参数**：
+    - `documents -> list`：返回处理的文档列表，包含文档的基础信息。
+      - `id -> uuid`：创建的文档 id，类型为 uuid。
+      - `name -> str`：创建的文档名字，类型为字符串。
+      - `status -> str`：当前文档的状态，涵盖 `waiting(等待中)`、`parsing(解析处理中)`、`splitting(分割中)`、`indexing(构建索引中)`、`completed(构建完成)`、`error(出错)` 等。
+      - `created_at -> int`：文档的创建时间戳，类型为整型。
+    - `batch -> str`：当前处理的批次标识，可以通过该批次来获取对应文档的处理信息，批次的格式为 `%Y%m%d%H%M%S` + `100000-999999随机字符串`。
+- **请求示例**：
+
+  ```
+  POST:/datasets/46db30d1-3199-4e79-a0cd-abf12fa6858f/documents
+
+  {
+      "upload_file_ids": [
+          "5537fc7d-22ef-416e-9535-e4faec532c54",
+          "fbd81b3f-3d57-42c8-bfaa-c4b564b1306d",
+          "c8bd1894-f64b-46d3-9928-54e452669f9e"
+      ],
+      "process_type": "custom",
+      "rule": {
+          "pre_proces_rules": [
+              {"id": "remove_extra_space", "enabled": true},
+              {"id": "remove_url_and_email", "enabled": false},
+          ],
+          "segment": {
+              "separators": ["\n"],
+              "chunk_size": 500,
+              "chunk_overlap": 50,
+          }
+      }
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {
+          "documents": [
+              {
+                  "id": "c8bd1894-f64b-46d3-9928-54e452669f9e",
+                  "name": "LLMOps项目API文档.md",
+                  "status": "waiting",
+                  "created_at": 1726858840
+              },
+              {
+                  "id": "f16fa6a3-3088-4b6c-9609-85827f45e9d5",
+                  "name": "LLMOps提示词.md",
+                  "status": "waiting",
+                  "created_at": 1726858837
+              }
+          ],
+          "batch": "20240516234156542163"
+      },
+      "message": ""
+  }
+  ```
+
+### **4.10 [todo]根据批处理标识获取处理进度**
+
+- **接口说明**：根据生成的批处理标识查询当前批次下文档的处理进度。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/documents/batch/:batch`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，批处理标识关联的知识库id，类型为 uuid。
+    - `batch -> str`：批处理标识，类型为字符串，格式为 `%Y%m%d%H%M%S` + `100000-999999随机字符串`。
+  - 响应参数：
+    - `id -> uuid`：处理文档的 id，类型为 uuid。
+    - `name -> string`：文档的名字，类型为 uuid。
+    - `size -> int`：文档关联的文件大小，类型为整型，单位为字节。
+    - `extension -> string`：文档的扩展名，类型为字符串。
+    - `mime_type -> string`：文档的 mimetype 类型推断，类型为字符串。
+    - `position -> int`：文档在知识库中的位置，类型为整型。
+    - `segment_count -> int`：该文档下的文档片段数，类型为整型。
+    - `completed_segment_count -> int`：该文档下已经处理完成的文档片段数，类型为整型。
+    - `error -> str`：文档片段如果处理出错，会使用该字段记录，类型为整型。
+    - `status -> str`：文档的状态，涵盖 `waiting(等待中)`、`parsing(解析处理中)`、`splitting(分割中)`、`indexing(构建索引中)`、`completed(构建完成)`、`error(出错)` 等内容，用于展示当前文档的详细状态。
+    - `processing_started_at -> int`：开始处理时间，当程序开始处理当前的文档时，会记录该时间，类型为时间戳，下一步为 `解析`，如果没有完成则值为 0，当前的状态为 `parsing`，一开始的状态为 `waiting`。
+    - `parsing_completed_at -> int`：解析完成时间，当程序加载完当前文档的时候记录的时间，类型为时间戳，下一步为 `分割`，如果没有完成，则值为 0，当前的状态为 `splitting`，代表下一步需要分割，因为解析已经结束。
+    - `splitting_completed_at -> int`：分割完成时间，当程序使用分割器处理完该文档时记录的时间，类型为时间戳，下一步为 `构建(索引构建+关键词构建)`，如果没有完成，则值为 0，当前的状态为 `indexing`，代表下一步需要构建索引，当前分割已结束。
+    - `completed_at -> int`：构建完成时间，当程序使用 Embeddings 文本嵌入模型以及分词器完成向量转换+关键词提取动作的时候记录的时间，类型为时间戳，该阶段为最后一个阶段，如果没有完成，则值为 0，状态为 `completed` 代表处理完成。
+    - `stopped_at -> int`：停止时间，类型为时间戳，文档没有正常处理完成的时候，记录的时间，如果没有停止，则值为 0，当前状态为 `error`，代表出错了。
+    - `created_at -> int`：文档的记录创建时间戳，类型为整型。
+- **请求示例**：
+  ```
+  GET://datasets/46db30d1-3199-4e79-a0cd-abf12fa6858f/documents/batch/20240516234156542163
+  ```
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": [
+          {
+              "completed_at": 1728227098,
+              "completed_segment_count": 60,
+              "created_at": 1728198253,
+              "error": "",
+              "extension": "md",
+              "id": "6ddd7c75-a379-41ed-8f93-3e9bd766c850",
+              "mime_type": "text/markdown",
+              "name": "项目API文档-完整.md",
+              "parsing_completed_at": 1728227070,
+              "position": 2,
+              "processing_started_at": 1728227065,
+              "segment_count": 60,
+              "size": 94003,
+              "splitting_completed_at": 1728227072,
+              "status": "completed",
+              "stopped_at": 0
+          }
+      ],
+      "message": ""
+  }
+  ```
+
+### **4.11 [todo]更新指定文档基础名称**
+
+- **接口说明**：该接口用于更定特定的文档基础信息（文档的名称），在同一个 `知识库` 中，文档是可以出现重名的，并且文档更新后的名称长度不能超过100个字符。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/name`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该文档归属的知识库 id，类型为 uuid。
+    - `document_id -> uuid`：路由参数，需要更新的文档 id，类型为 uuid。
+    - `name -> str`：需要更新的文档名称，长度不能超过 100 个字符，必填，不能为空，更新的文档名字不必使用对应的扩展，可以任意起名。
+- **请求示例**：
+
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d
+
+  {
+      "name": "基于工具调用的智能体设计与实现.md"
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "更新文档信息成功"
+  }
+  ```
+
+### **4.12 [todo]更改指定文档的启用状态**
+
+- **接口说明**：该接口主要用于更改指定文档的启用状态，例如 `开启` 或 `关闭`，并且该接口只有在 `文档` 状态为 `completed(完成)` 时才可以做相应的更新调整，否则会抛出错误。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/enabled`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该文档归属的知识库 id，类型为 uuid。
+    - `document_id -> uuid`：路由参数，需要更新的文档 id，类型为 uuid。
+    - `enabled -> bool`：对应文档的状态，true 为开启，false 为关闭，只有当文档处理完成后，才可以修改，文档如果没有执行完毕，将 `enabled` 修改为 true，会抛出错误信息。
+- **请求示例**：
+
+  ```
+  POST://datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/enabled
+
+  {
+      "enabled": false
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "更改文档启用状态成功"
+  }
+  ```
+
+### **4.13 [todo]获取指定文档基础信息**
+
+- **接口说明**：该接口用于获取指定文档的基础信息，主要用于展示文档片段信息+更新文档信息对应的页面。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/documents/:document_id`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该文档归属的知识库 id，类型为 uuid。
+    - `document_id -> uuid`：路由参数，需要获取信息的 `文档id`，类型为 uuid。
+  - 响应参数：
+    - `id -> uuid`：文档的 id，类型为 uuid。
+    - `dataset_id -> uuid`：文档归属的知识库 id，类型为 uuid。
+    - `name -> str`：文档的名称，类型为字符串。
+    - `segment_count -> int`：文档的片段总数，类型为整型。
+    - `character_count -> int`：文档的字符数，类型为整型。
+    - `hit_count -> int`：文档的命中次数，类型为整型。
+    - `position -> int`：文档的位置，数字越小越靠前（自然排序）。
+    - `enabled -> bool`：文档的启用状态，true 表示启用，false 表示已禁用（多种原因禁用）。
+    - `disabled_at -> int`：文档的禁用时间（人为禁用时添加），默认为 0 表示无人工禁用。
+    - `status -> string`：文档的状态，类型为字符串，涵盖 `waiting(等待中)`、`parsing(解析处理中)`、`splitting(分割中)`、`indexing(构建索引中)`、`completed(构建完成)`、`error(出错)` 等，只有当构建完成时 enabled 才起作用。
+    - `error -> string`：错误信息，如果没有错误则为空字符串，当出现错误的时候，在前端 UI 界面可以予以相关提示。
+    - `updated_at -> int`：文档的更新时间戳，类型为整型。
+    - `created_at -> int`：文档的创建时间戳，类型为整型。
+- **请求示例**：
+  ```
+  GET:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {
+           "id": "6196a3bc-2c81-40b8-83a5-25ad837f5a84",
+           "dataset_id": "bde70d64-cbcc-47e7-a0f5-b51200b87c7c",
+           "name": "基于工具调用的智能体设计与实现.md",
+           "segment_count": 15,
+           "character_count": 4700,
+           "hit_count": 0,
+           "position": 21,
+           "enabled": true,
+           "disabled_at": 0,
+           "status": "completed",
+           "error": "",
+           "updated_at": 1726949586,
+           "created_at": 1726949586
+       },
+       "message": ""
+   }
+  ```
+
+### **4.14 [todo]删除指定文档信息**
+
+- **接口说明**：该接口会根据传递的信息删除文档信息，并删除该文档下的片段信息，同时会将操作同步到向量数据库，在向量数据库中删除归属该文档的所有片段信息，该接口属于耗时接口，所以在后端使用异步任务队列的方式进行操作，完成基础信息的删除（例如文档记录）后，接口即会正常响应前端（删除文档、文档片段、关键词表数据、weaviate数据，同时在删除的时候需要上锁）。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/delete`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该文档归属的知识库 id，类型为 uuid。
+    - `document_id -> uuid`：路由参数，需要删除的 `文档id`，类型为 uuid。
+- **请求示例**：
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/delete
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {},
+       "message": "删除文档成功"
+   }
+  ```
+
+### **4.15 [todo]获取指定文档的片段列表**
+
+- **接口说明**：该接口用于获取指定文档的片段列表，该接口支持分页+搜索，搜索模糊匹配片段内容，当搜索词为空时代表不进行任何检索，该接口只要 `dataset_id`、`document_id` 有任意一个不匹配就会抛出对应的错误。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/documents/:document_id/segments`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `search_word -> str`：可选参数，搜索词，用于片段内容模糊搜索，默认为空代表不搜索任何内容。
+    - `current_page -> int`：可选参数，代表当前页数，默认为 1。
+    - `page_size -> int`：可选参数，代表当前每页的数据条数，默认为 20，范围从 1\~50。
+  - 响应参数：
+    - `list -> list[dict]`：分页后的文档片段列表信息。
+      - `id -> uuid`：文档片段的 id，类型为 uuid。
+      - `document_id -> uuid`：片段归属的 `文档id`，类型为 uuid。
+      - `dataset_id -> uuid`：片段归属的 `知识库id`，类型为 uuid。
+      - `position -> int`：片段在文档内的位置，数字越小越靠前（自然排序）。
+      - `content -> str`：片段的内容，类型为字符串。
+      - `keywords -> list[str]`：关键词列表，列表的元素类型为字符串。
+      - `character_count -> int`：片段的字符串长度，类型为整型。
+      - `token_count -> int`：片段的 token 数，类型为整型。
+      - `hit_count -> int`：片段被命中的次数，类型为整型。
+      - `enabled -> bool`：片段是否启用，true 表示启用，false 表示禁用（人为禁用或者程序处理异常、未处理完导致的禁用），只有当 `status` 为 `completed(完成)` 时，enabled 才有可能为 true。
+      - `disabled_at -> int`：片段被人为禁用的时间，为 0 表示没有人为禁用，类型为整型。
+      - `status -> string`：片段的状态，涵盖 `waiting(等待处理)`、`indexing(构建索引)`、`completed(构建完成)`、`error(错误)` 等状态，不同的状态代表不同的处理程度。
+      - `error -> string`：错误信息，类型为字符串，当后端程序处理出现错误的时候，会记录错误信息。
+      - `updated_at -> int`：片段的最后更新时间，类型为时间戳。
+      - `created_at -> int`：片段的创建时间，类型为时间戳。
+- **请求示例**：
+  ```
+  GET:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments
+  ```
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {
+          "list": [
+              {
+                  "id": "b7087193-8e1b-4e88-8ae4-48a0f90a8ad5",
+                  "document_id": "6a266b4b-d03b-4066-a4bb-f64abfe23b9d",
+                  "dataset_id": "bde70d64-cbcc-47e7-a0f5-b51200b87c7c",
+                  "position": 1,
+                  "content": "为了借助社交产品的流量，让用户主动分享APP中的内容到社交平台来达到拉新和促活的目的，市场上绝大多数APP都有第三方分享的功能，它是内容分发的最有效途径，并且大大降低了企...",
+                  "keywords": ["社交", "App", "成本", "功能", "内容分发"],
+                  "character_count": 487,
+                  "token_count": 407,
+                  "hit_count": 1,
+                  "enabled": true,
+                  "disabled_at": 0,
+                  "status": "completed",
+                  "error": "",
+                  "updated_at": 1726858854,
+                  "created_at": 1726858854
+              }
+          ],
+          "paginator": {
+              "current_page": 1,
+              "page_size": 21,
+              "total_page": 1,
+              "total_record": 2
+          }
+      },
+      "message": ""
+  }
+  ```
+
+### **4.16 [todo]新增文档片段信息**
+
+- **接口说明**：该接口主要用于在指定文档下新增 `文档片段` 信息，添加的片段位置会处于该文档的最后，并且由于每次只能新增一个文档片段，相对来说并不会这么耗时（无需加载分割，直接并行执行 `关键词提取`+`文本转向量`），所以该接口是同步的，接口会等待处理完毕后再返回，该接口如果任意一个 `dataset_id` 或 `document_id` 出错，都会抛出对应的错误。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/segments`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `content -> str`：片段内容，原则上长度不能超过 1000 个 token，类型为字符串。
+    - `keywords -> list[str]`：片段对应的关键词列表，可选参数，如果该参数没有传，在后端会使用 `分词服务` 对片段内容进行分词，得到对应的关键词。
+- **请求示例**：
+
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments
+
+  {
+      "content": "## 角色 你是一个拥有10年经验的资深Python工程师，精通Flask，Flask-SQLAlchemy，Postgres，以及其他Python开发工具，能够为用户提出的需求或者提供的代码段生成指定的",
+      "keywords": ["Python", "Flask", "工程师"]
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "新增文档片段成功"
+  }
+  ```
+
+### **4.17 [todo]删除对应的文档片段信息**
+
+- **接口说明**：该接口用于删除对应的文档片段信息，并且该操作会同步到向量数据库中并行删除，并且由于该接口操作的数据比较少，没有耗时操作，所以无需在后端异步执行，执行完成后接口会正常响应。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/segments/:segment_id/delete`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `segment_id -> uuid`：路由参数，需要删除的 `片段id`，类型为 uuid。
+- **请求示例**：
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments/26834b62-8bb4-410b-a626-00aded4892b9/delete
+  ```
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "删除文档片段成功"
+  }
+  ```
+
+### **4.18 [todo]修改文档片段内容**
+
+- **接口说明**：该接口主要用于修改指定的文档片段信息，支持修改 `内容`、`关键词`，修改的数据会双向同步到 `业务数据库` 和 `向量数据库`，并且由于该接口修改的数据比较少，耗时相对较短，所以在后端无需异步处理，操作完成后接口进行响应。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/segments/:segment_id`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该、片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `segment_id -> uuid`：路由参数，需要修改的 `片段id`，类型为 uuid。
+    - `content -> str`：片段内容，原则上长度不能超过 1000 个 token，类型为字符串。
+    - `keywords -> list[str]`：片段对应的关键词列表，可选参数，如果该参数没有传，在后端会使用 `分词服务` 对片段内容进行分词，得到对应的关键词；传递了参数则不会调用 `分词服务`。
+- **请求示例**：
+
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments/26834b62-8bb4-410b-a626-00aded4892b9
+
+  {
+      "content": "## 角色 你是一个拥有10年经验的资深Python工程师，精通Flask，Flask-SQLAlchemy，Postgres，以及其他Python开发工具，能够为用户提出的需求或者提供的代码段生成指定的",
+      "keywords": ["Python", "Flask", "工程师"]
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "修改文档片段信息成功"
+  }
+  ```
+
+### **4.19 [todo]更新文档片段的启用状态**
+
+- **接口说明**：该接口主要用于更新文档片段的启用状态，例如 `启用` 或 `禁用`，该接口会同步更新 `业务数据库` 和 `向量数据库`，并且耗时较短，所以无需执行异步任务。
+- **接口信息**：`授权`+`POST:/datasets/:dataset_id/documents/:document_id/segments/:segment_id/enabled`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `segment_id -> uuid`：路由参数，需要修改的 `片段id`，类型为 uuid。
+    - `enabled -> bool`：对应片段的状态，true 为开启，false 为关闭，只有当文档片段处理完成后，才可以修改，文档如果没有执行完毕，将 `enabled` 修改为 true，会抛出错误信息。
+- **请求示例**：
+
+  ```
+  POST:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments/26834b62-8bb4-410b-a626-00aded4892b9
+
+  {
+      "enabled": false
+  }
+  ```
+
+- **响应示例**：
+  ```
+  {
+      "code": "success",
+      "data": {},
+      "message": "修改片段状态成功"
+  }
+  ```
+
+### **4.20 [todo]查询文档片段信息**
+
+- **接口说明**：该接口主要用于查询对应的文档片段信息，涵盖了片段内容、关键词、状态、字符数、召回次数、创建时间等内容，并且要求传递的 `dataset_id`、`document_id`、`segment_id` 保持一致，否则会抛出错误。
+- **接口信息**：`授权`+`GET:/datasets/:dataset_id/documents/:document_id/segments/:segment_id`
+- **接口参数**：
+  - 请求参数：
+    - `dataset_id -> uuid`：路由参数，该片段归属的 `知识库 id`，类型为 uuid。
+    - `document_id -> uuid`：路由参数，该片段归属的 `文档id`，类型为 uuid。
+    - `segment_id -> uuid`：路由参数，需要查询的 `片段id`，类型为 uuid。
+  - 响应参数：
+    - `id -> uuid`：文档片段的 id，类型为 uuid。
+    - `document_id -> uuid`：片段归属的 `文档id`，类型为 uuid。
+    - `dataset_id -> uuid`：片段归属的 `知识库id`，类型为 uuid。
+    - `position -> int`：片段在文档内的位置，数字越小越靠前（自然排序）。
+    - `content -> str`：片段的内容，类型为字符串。
+    - `keywords -> list[str]`：关键词列表，列表的元素类型为字符串。
+    - `character_count -> int`：片段的字符串长度，类型为整型。
+    - `token_count -> int`：片段的 token 数，类型为整型。
+    - `hit_count -> int`：片段被命中的次数，类型为整型。
+    - `hash -> str`：片段内容的哈希值，用于确定唯一的片段内容。
+    - `enabled -> bool`：片段是否启用，true 表示启用，false 表示禁用（人为禁用或者程序处理异常、未处理完导致的禁用），只有当 `status` 为 `completed(完成)` 时，enabled 才有可能为 true。
+    - `disabled_at -> int`：片段被人为禁用的时间，为 0 表示没有人为禁用，类型为整型。
+    - `status -> string`：片段的状态，涵盖 `waiting(等待处理)`、`indexing(构建索引)`、`completed(构建完成)`、`error(错误)` 等状态，不同的状态代表不同的处理程度。
+    - `error -> string`：错误信息，类型为字符串，当后端程序处理出现错误的时候，会记录错误信息。
+    - `updated_at -> int`：片段的最后更新时间，类型为时间戳。
+    - `created_at -> int`：片段的创建时间，类型为时间戳。
+- **请求示例**：
+  ```
+  GET:/datasets/bde70d64-cbcc-47e7-a0f5-b51200b87c7c/documents/6a266b4b-d03b-4066-a4bb-f64abfe23b9d/segments/26834b62-8bb4-410b-a626-00aded4892b9
+  ```
+- **响应示例**：
+  ```
+   {
+       "code": "success",
+       "data": {
+           "id": "b7087193-8e1b-4e88-8ae4-48a0f90a8ad5",
+           "document_id": "6a266b4b-d03b-4066-a4bb-f64abfe23b9d",
+           "dataset_id": "bde70d64-cbcc-47e7-a0f5-b51200b87c7c",
+           "position": 1,
+           "content": "为了借助社交产品的流量，让用户主动分享APP中的内容到社交平台来达到拉新和促活的目的，市场上绝大多数APP都有第三方分享的功能，它是内容分发的最有效途径，并且大大降低了企...",
+           "keywords": ["社交", "App", "成本", "功能", "内容分发"],
+           "character_count": 487,
+           "token_count": 407,
+           "hit_count": 1,
+           "hash": "6d867db429d26ea426d6b67a88fce43e74760d039e9e2925f0083b7acb1f066a",
+           "enabled": true,
+           "disabled_at": 0,
+           "status": "completed",
+           "error": "",
+           "updated_at": 1726858854,
+           "created_at": 1726858854
+       },
+       "message": ""
+   }
+  ```
+
+## **05**
 
 ## LLMOps 项目扩展资料
 
@@ -1042,7 +1880,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 
 在 LLMOps 项目中，如果使用完整的 OpenAPI-Schema 规范来描述 API 工具会显得特别繁琐，所以我对 OpenAPI-Schema 规范进行相应的简化+调整，做出如下约定：
 
-1. 所有的外部 API 请求类型只有 GET 和 POST，并没有 DELETE/PUT 等方法，一个路径下可以拥有多个方法，例如同时拥有 GET 和 POST，在项目中使用 Operation\_Id 进行唯一标识判断；
+1. 所有的外部 API 请求类型只有 GET 和 POST，并没有 DELETE/PUT 等方法，一个路径下可以拥有多个方法，例如同时拥有 GET 和 POST，在项目中使用 Operation_Id 进行唯一标识判断；
 2. 基础的 API 地址有且只有一个，被添加到 server 中，该规范是 LLMOps 项目自行约定的，并不是 OpenAPI 规范；
 3. 接口的数据可以作为参数被附加到 `Header/Query/Cookie/Path/RequestBody` 这 4 个位置；
 4. 所有的参数都使用 `parameters` 进行记录，`in` 参数的类型支持 `path/query/header/cookie/request_body` 中，分别代表 `请求路径`、`查询query`、`header请求头`、`cookie`、`RequestBody(只有POST才有)` 。
@@ -1053,40 +1891,40 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 
 ```json
 {
-    "description": "查询ip所在地、天气预报、路线规划等高德工具包",
-    "server": "https://gaode.example.com",
-    "paths": {
-        "/weather": {
-            "get": {
-                "description": "根据传递的城市名获取指定城市的天气预报，例如：广州",
-                "operationId": "GetCurrentWeather",
-				"parameters": [
-                    {
-                        "name": "location",
-                        "in": "query",
-                        "description": "需要查询天气预报的城市名",
-                        "required": true,
-                        "type": "str"
-                    }
-                ]
-            }
-        },
-        "/ip": {
-            "post": {
-                "description": "根据传递的ip查询ip归属地",
-                "operationId": "GetCurrentIp",
-                "parameters": [
-                    {
-                        "name": "ip",
-                        "in": "request_body",
-                        "description": "需要查询所在地的标准ip地址，例如:201.52.14.23",
-                        "required": true,
-                        "type": "str"
-                    }
-                ]
-            }
-        }
+  "description": "查询ip所在地、天气预报、路线规划等高德工具包",
+  "server": "https://gaode.example.com",
+  "paths": {
+    "/weather": {
+      "get": {
+        "description": "根据传递的城市名获取指定城市的天气预报，例如：广州",
+        "operationId": "GetCurrentWeather",
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "需要查询天气预报的城市名",
+            "required": true,
+            "type": "str"
+          }
+        ]
+      }
+    },
+    "/ip": {
+      "post": {
+        "description": "根据传递的ip查询ip归属地",
+        "operationId": "GetCurrentIp",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "request_body",
+            "description": "需要查询所在地的标准ip地址，例如:201.52.14.23",
+            "required": true,
+            "type": "str"
+          }
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -1099,36 +1937,37 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 
 ```json
 {
-	"result": {
-		"msg": "success",
-		"code": 200
-	},
-	"data": {
-		"entries": [{
-				"explain": "n. （对家庭成员或挚友的）喜爱，关爱；爱情，恋爱；喜好，喜爱；<英，非正式>（昵称）亲爱的；（用于...",
-				"entry": "love"
-			},
-			{
-				"explain": "adj. 可爱的，迷人的；令人愉快的，美好的；亲切和善的；<英，非正式>（用于表示对某事物感到恼火）...",
-				"entry": "lovely"
-			},
-			{
-				"explain": "n. （非婚的）情人；爱好者; 【名】 （Lover）（英）洛弗（人名）",
-				"entry": "lover"
-			},
-			{
-				"explain": "v. 热爱（love 的过去分词）; adj. 恋爱的；受珍爱的",
-				"entry": "loved"
-			},
-			{
-				"explain": "爱情",
-				"entry": "loves"
-			}
-		],
-		"query": "love",
-		"language": "en",
-		"type": "dict"
-	}
+  "result": {
+    "msg": "success",
+    "code": 200
+  },
+  "data": {
+    "entries": [
+      {
+        "explain": "n. （对家庭成员或挚友的）喜爱，关爱；爱情，恋爱；喜好，喜爱；<英，非正式>（昵称）亲爱的；（用于...",
+        "entry": "love"
+      },
+      {
+        "explain": "adj. 可爱的，迷人的；令人愉快的，美好的；亲切和善的；<英，非正式>（用于表示对某事物感到恼火）...",
+        "entry": "lovely"
+      },
+      {
+        "explain": "n. （非婚的）情人；爱好者; 【名】 （Lover）（英）洛弗（人名）",
+        "entry": "lover"
+      },
+      {
+        "explain": "v. 热爱（love 的过去分词）; adj. 恋爱的；受珍爱的",
+        "entry": "loved"
+      },
+      {
+        "explain": "爱情",
+        "entry": "loves"
+      }
+    ],
+    "query": "love",
+    "language": "en",
+    "type": "dict"
+  }
 }
 ```
 
@@ -1136,32 +1975,31 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 
 ```json
 {
-    "description": "这是一个查询对应英文单词字典的工具",
-    "server": "https://dict.youdao.com",
-    "paths": {
-        "/suggest": {
-            "get": {
-                "description": "根据传递的单词查询其字典信息",
-                "operationId": "YoudaoSuggest",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "description": "要检索查询的单词，例如love/computer",
-                        "required": true,
-                        "type": "str"
-                    },
-                    {
-                        "name": "doctype",
-                        "in": "query",
-                        "description": "返回的数据类型，支持json和xml两种格式，默认情况下json数据",
-                        "required": false,
-                        "type": "str"
-                    }
-                ]
-            }
-        }
+  "description": "这是一个查询对应英文单词字典的工具",
+  "server": "https://dict.youdao.com",
+  "paths": {
+    "/suggest": {
+      "get": {
+        "description": "根据传递的单词查询其字典信息",
+        "operationId": "YoudaoSuggest",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "要检索查询的单词，例如love/computer",
+            "required": true,
+            "type": "str"
+          },
+          {
+            "name": "doctype",
+            "in": "query",
+            "description": "返回的数据类型，支持json和xml两种格式，默认情况下json数据",
+            "required": false,
+            "type": "str"
+          }
+        ]
+      }
     }
+  }
 }
 ```
-
