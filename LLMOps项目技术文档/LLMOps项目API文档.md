@@ -106,7 +106,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **请求示例**：
   ```bash
   POST:/apps
-
+  
   {
   	"name": "LLM应用产品经理",
   	"icon": "https://wissfi.com/2025/12/14/218e5217-ab10-4634-9681-022867955f1b.png",
@@ -244,7 +244,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **请求示例**：
   ```bash
   POST:/apps/46db30d1-3199-4e79-a0cd-abf12fa6858f
-
+  
   {
   	"name": "LLM应用产品经理",
   	"icon": "https://wissfi.com/2025/12/14/218e5217-ab10-4634-9681-022867955f1b.png",
@@ -817,7 +817,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
 - **请求示例**：
   ```json
   POST:/api-tools/e1baf52a-1be2-4b93-ad62-6fad72f1ec37
-
+  
   {
       "name": "",
       "icon": "",
@@ -965,6 +965,76 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTY0NTY3O
   	"message": "openapi-schema校验失败，info不能为空"
   }
   ```
+
+## 03. 文件上传模块
+
+### 3.1 [todo]将文件上传到腾讯云cos
+
+- **接口说明**：将文件上传到腾讯云对象存储中，该接口主要用于上传文件，调用接口后返回对应的文件 id、名字、云端位置等信息，主要用于知识库、工具、多模态应用对话。
+
+- **接口信息**：`授权`+`POST:/upload-files/file`
+
+- **接口参数**：
+
+  - 请求参数：
+    - `file -> File`：需要上传的文件，最多支持上传一个文件，最大支持的文件不能超过 15 MB。
+  - 响应参数：
+    - `id -> uuid`：上传文件的引用 id，类型为 uuid，在知识库模块、应用对话模块会使用该引用文件 id。
+    - `account_id -> uuid`：该文件所归属的账号 id，用于标记是哪个账号上传了该文件。
+    - `name -> str`：原始文件名字。
+    - `key -> str`：云端文件对应的 key 或者路径。
+    - `size -> int`：文件大小，单位为字节。
+    - `extension -> str`：文件的扩展名，例如 `.md`。
+    - `mime_type -> str`：文件 mime-type 类型推断。
+    - `created_at -> str`：文件的创建时间戳。
+
+- **响应示例**：
+
+  ```json
+  {
+      "code": "success",
+      "data": {
+          "id": "46db30d1-3199-4e79-a0cd-abf12fa6858f",
+          "account_id": "e1baf52a-1be2-4b93-ad62-6fad72f1ec37",
+          "name": "项目API文档.md",
+          "key": "2024/05/14/218e5217-ab10-4634-9681-022867955f1b.md",
+          "size": 30241,
+          "extension": ".md",
+          "mime_type": "txt",
+          "created_at": 1721460914
+      },
+      "message": ""
+  }
+  ```
+
+### 3.2 [todo]将图片上传到腾讯云cos
+
+- **接口说明**：将图片上传到腾讯云 cos 对象存储中，该接口用于需要上传图片的模块，接口会返回图片的 URL 地址。
+
+- **接口信息**：`授权`+`POST:/upload-files/image`
+
+- **接口参数**：
+
+  - 请求参数：
+    - `file -> File`：需要上传的图片文件，支持上传 jpg、jpeg、png、gif，最大不能超过 15 MB。
+  - 响应参数：
+    - `image_url -> str`：上传图片对应的 URL 链接。
+
+- **响应示例**：
+
+  ```json
+  {
+      "code": "success",
+      "data": {
+          "image_url": "https://cdn.imooc.com/2024/05/14/218e5217-ab10-4634-9681-022867955f1b.png"
+      },
+      "message": ""
+  }
+  ```
+
+
+
+
 
 ## LLMOps 项目扩展资料
 
