@@ -1,1 +1,0 @@
-pipreqs --ignore venv --force

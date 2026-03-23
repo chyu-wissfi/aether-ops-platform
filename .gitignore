@@ -1,42 +1,23 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
+# IDE配置相关
+.idea/
+.vscode/
+
+# 字节编译/优化/DLL文件
+__pycache__
 *.py[cod]
 *$py.class
 
-# Virtual Environment
-venv/
-env/
-.env
-.env/
-.venv/
-.idea/*
-# storage
-**/storage/
-storage/
+# API相关
+api/storage/log/
+api/storage/memory/
+api/tmp/
+api/venv/
+api/test/storage/
+api/.env
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# UI相关
+ui/node_modules/
+ui/dist/
 
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
+# Docker容器相关
+docker/volumes/

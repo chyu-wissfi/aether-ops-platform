@@ -1,0 +1,24 @@
+model: ernie-5.0-thinking-preview
+label: ernie-5.0-thinking-preview
+model_type: chat
+features:
+  - agent_thought
+context_window: 119000
+max_output_tokens: 64000
+attributes:
+  model: ernie-5.0-thinking-preview
+parameters:
+  - name: temperature
+    use_template: temperature
+    max: 2
+    default: 0.8
+  - name: top_p
+    use_template: top_p
+  - name: presence_penalty
+    use_template: presence_penalty
+  - name: frequency_penalty
+    use_template: frequency_penalty
+  - name: max_output_tokens
+    use_template: max_tokens
+    default: 8192
+    max: 64000
