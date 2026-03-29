@@ -25,6 +25,88 @@
 
 ![docker-compose.jpg](./README/docker-compose.jpg)
 
+## 项目后端模块设计
+
+该项目采用经典的分层架构设计
+
+1. 入口层 app/http/ 负责应用初始化和中间件注册
+2. 路由层 handler/ 负责接收请求和参数校验
+3. 业务层 service/ 实现核心业务逻辑
+4. 数据层 model/ 负责数据库交互
+5. 公共组件 pkg/ 提供跨模块复用的通用能力
+6. 配置和工具模块分离，便于维护和扩展
+
+核心引擎层`internal/core/`：
+
+- workflow/ - 完整的工作流引擎，支持多种节点类型（LLM、工具调用、HTTP请求、代码执行等）
+- language_model/ - LLM 抽象封装
+- embedding/ - 文本向量化
+- vector_store/ - 向量数据库管理
+- unstructured/ - 非结构化文档解析
+- tool/ - 内置工具集
+- memory/ - 对话上下文记忆
+
+### API 项目文件结构梳理（更新版）：
+
+---
+
+```
+api/
+├── config/                     # 配置模块
+│   ├── __init__.py
+│   ├── config.py               # 配置加载逻辑
+│   └── default_config.py       # 默认配置项
+├── app/                        # 应用入口层
+│   ├── __init__.py
+│   └── http/                   # HTTP服务入口
+│       ├── __init__.py
+│       ├── app.py              # FastAPI 应用实例创建、中间件注册
+│       └── module.py           # 依赖注入模块配置
+├── internal/                   # 核心业务实现层
+│   ├── core/                   # 核心组件（工作流、向量存储、文档处理等）
+│   │   ├── embedding/          # 文本嵌入模型封装
+│   │   ├── language_model/     # LLM 调用封装
+│   │   ├── memory/             # 对话记忆管理
+│   │   ├── tool/               # 内置工具实现
+│   │   ├── unstructured/       # 非结构化文档处理（含 nltk_data）
+│   │   ├── vector_store/       # 向量数据库存储（index.faiss、index.pkl）
+│   │   └── workflow/           # 工作流引擎核心
+│   │       ├── entities/       # 工作流实体定义（节点、边、变量）
+│   │       ├── nodes/          # 工作流节点类型实现
+│   │       │   ├── start/      # 开始节点
+│   │       │   ├── end/        # 结束节点
+│   │       │   ├── llm/        # LLM 调用节点
+│   │       │   ├── code/       # 代码执行节点
+│   │       │   ├── tool/       # 工具调用节点
+│   │       │   ├── http_request/  # HTTP 请求节点
+│   │       │   ├── dataset_retrieval/  # 数据集检索节点
+│   │       │   ├── template_transform/  # 模板转换节点
+│   │       │   ├── question_classifier/  # 问题分类节点
+│   │       │   └── iteration/  # 循环迭代节点
+│   │       ├── utils/          # 工作流工具函数
+│   │       └── workflow.py     # 工作流引擎主逻辑
+│   ├── entity/                 # 实体定义
+│   ├── exception/              # 自定义异常定义
+│   ├── extension/              # 扩展模块
+│   ├── handler/                # API 接口处理器（Controller层）
+│   ├── lib/                    # 内部工具库
+│   ├── middleware/             # HTTP 中间件
+│   ├── migration/              # 数据库迁移（Alembic）
+│   ├── model/                  # 数据库模型（DAO层）
+│   ├── router/                 # 路由配置
+│   ├── schema/                 # 请求/响应模型（Pydantic）
+│   ├── server/                 # 服务启动配置
+│   ├── service/                # 业务逻辑层（Service层）
+│   └── task/                   # 异步任务模块
+├── pkg/                        # 公共可复用组件
+├── storage/                    # 存储相关模块
+├── test/                       # 单元测试/集成测试
+├── Dockerfile
+├── requirements.txt
+└── ...
+`internal/core/` 是项目的核心引擎层，包含：
+```
+
 ## 快速开始
 
 填写`docker-compose.yml`文件中的环境变量，包括数据库连接信息、缓存数据库连接信息、向量数据库连接信息，各种API密钥等。
@@ -62,7 +144,7 @@ docker-compose up -d
 ### 一些优化点
 
 - 考虑到处理大量文档分块、嵌入等的长耗时，利用 Celery+Redis 构建异步任务队列处理分块嵌入，用线程池优化向量入库。
-- 随着功能迭代，针对检索准确率不够，在 RAG 引入检索前处理+混合检索+重排，在《》数据下测试，准确率相比语义检索提升30%+，召回率从60%提升至83%+。
+- 随着功能迭代，针对检索准确率不够，在 RAG 引入检索前处理+混合检索+重排，在黑神话悟空的自建QA数据下测试，准确率相比语义检索提升近30%，召回率从60%左右提升至80%+。
 - 在文档与片段(chunk)的更新与删除时，实现 Redis 缓存锁，保障数据安全。
 
 ### 检索器设计思路
