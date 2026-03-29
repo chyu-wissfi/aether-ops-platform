@@ -21,3 +21,6 @@ ui/dist/
 
 # Docker容器相关
 docker/volumes/
+
+# Claude Code相关
+.claude/CLAUDE.local.md

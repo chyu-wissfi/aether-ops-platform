@@ -25,6 +25,15 @@
 
 ![docker-compose.jpg](./README/docker-compose.jpg)
 
+## 快速开始
+
+填写`docker-compose.yml`文件中的环境变量，包括数据库连接信息、缓存数据库连接信息、向量数据库连接信息，各种API密钥等。
+
+```bash
+cd docker
+docker-compose up -d
+```
+
 ## 项目后端模块设计
 
 该项目采用经典的分层架构设计
@@ -46,7 +55,7 @@
 - tool/ - 内置工具集
 - memory/ - 对话上下文记忆
 
-### API 项目文件结构梳理（更新版）：
+### API 项目文件结构梳理：
 
 ---
 
@@ -64,27 +73,61 @@ api/
 │       └── module.py           # 依赖注入模块配置
 ├── internal/                   # 核心业务实现层
 │   ├── core/                   # 核心组件（工作流、向量存储、文档处理等）
-│   │   ├── embedding/          # 文本嵌入模型封装
-│   │   ├── language_model/     # LLM 调用封装
+│   │   ├── agent/              # Agent 相关实现
+│   │   │   ├── agent_builder.py
+│   │   │   ├── agent_executor.py
+│   │   │   └── conversation_agent.py
+│   │   ├── builtin_apps/       # 内置应用实现
+│   │   │   ├── chat/
+│   │   │   ├── completion/
+│   │   │   ├── dataset_qa/
+│   │   │   └── workflow/
+│   │   ├── file_extractor/     # 文件提取工具
+│   │   ├── langchain_fix/      # LangChain 补丁/修复
+│   │   ├── language_model/     # 语言模型封装
+│   │   │   ├── base.py         # LLM 基类
+│   │   │   ├── factory.py      # LLM 工厂
+│   │   │   ├── openai.py       # OpenAI 模型封装
+│   │   │   ├── anthropic.py    # Anthropic 模型封装
+│   │   │   └── azure_openai.py # Azure OpenAI 模型封装
 │   │   ├── memory/             # 对话记忆管理
-│   │   ├── tool/               # 内置工具实现
-│   │   ├── unstructured/       # 非结构化文档处理（含 nltk_data）
-│   │   ├── vector_store/       # 向量数据库存储（index.faiss、index.pkl）
+│   │   ├── retrievers/         # 检索器实现
+│   │   ├── tools/              # 工具集
+│   │   │   ├── base_tool.py
+│   │   │   ├── builtin_tools/
+│   │   │   │   ├── search/
+│   │   │   │   ├── calculator/
+│   │   │   │   └── web_scraper/
+│   │   │   └── api_tools/
+│   │   ├── unstructured/       # 非结构化文档处理
+│   │   │   ├── document_processor.py
+│   │   │   └── nltk_data/      # NLTK 数据文件
+│   │   │       ├── punkt/
+│   │   │       │   └── ... (18种语言的 punkt 分词数据)
+│   │   │       └── punkt_tab/
+│   │   │           └── ... (22种语言的 punkt_tab 分词数据，包含 abbrev_types.txt、collocations.tab、ortho_context.tab等)
+│   │   ├── vector_store/       # 向量数据库存储
 │   │   └── workflow/           # 工作流引擎核心
-│   │       ├── entities/       # 工作流实体定义（节点、边、变量）
-│   │       ├── nodes/          # 工作流节点类型实现
-│   │       │   ├── start/      # 开始节点
-│   │       │   ├── end/        # 结束节点
-│   │       │   ├── llm/        # LLM 调用节点
-│   │       │   ├── code/       # 代码执行节点
-│   │       │   ├── tool/       # 工具调用节点
-│   │       │   ├── http_request/  # HTTP 请求节点
-│   │       │   ├── dataset_retrieval/  # 数据集检索节点
-│   │       │   ├── template_transform/  # 模板转换节点
-│   │       │   ├── question_classifier/  # 问题分类节点
-│   │       │   └── iteration/  # 循环迭代节点
-│   │       ├── utils/          # 工作流工具函数
-│   │       └── workflow.py     # 工作流引擎主逻辑
+│   │       ├── workflow.py                  # 工作流引擎主逻辑
+│   │       ├── workflow_validate_rule.jpg   # 工作流验证规则图
+│   │       ├── entities/                    # 工作流实体定义
+│   │       │   ├── node_entity.py           # 节点实体
+│   │       │   ├── edge_entity.py           # 边实体
+│   │       │   ├── variable_entity.py       # 变量实体
+│   │       │   └── workflow_entity.py       # 工作流实体
+│   │       ├── nodes/                       # 工作流节点类型实现
+│   │       │   ├── base_node.py             # 节点基类
+│   │       │   ├── start/                   # 开始节点
+│   │       │   ├── end/                     # 结束节点
+│   │       │   ├── llm/                     # LLM 调用节点
+│   │       │   ├── code/                    # 代码执行节点
+│   │       │   ├── tool/                    # 工具调用节点
+│   │       │   ├── http_request/            # HTTP 请求节点
+│   │       │   ├── dataset_retrieval/       # 数据集检索节点
+│   │       │   ├── template_transform/      # 模板转换节点
+│   │       │   ├── question_classifier/     # 问题分类节点
+│   │       │   └── iteration/               # 循环迭代节点
+│   │       └── utils/                       # 工作流工具函数
 │   ├── entity/                 # 实体定义
 │   ├── exception/              # 自定义异常定义
 │   ├── extension/              # 扩展模块
@@ -107,16 +150,7 @@ api/
 `internal/core/` 是项目的核心引擎层，包含：
 ```
 
-## 快速开始
-
-填写`docker-compose.yml`文件中的环境变量，包括数据库连接信息、缓存数据库连接信息、向量数据库连接信息，各种API密钥等。
-
-```bash
-cd docker
-docker-compose up -d
-```
-
-## 应用编排模块
+### 应用编排模块
 
 在 LLMOps 应用编排页面，应用的配置可以划分成几种，例如：
 
@@ -139,22 +173,22 @@ docker-compose up -d
 4. 更新应用：取出应用的 app_config_version 草稿配置，并同步更新 app_config 中的配置，同时在app_config_version 中添加一条历史配置信息记录，从而完成应用更新流程。
 5. 取消发布：删除 app_config 中的配置，并更改应用的状态。
 
-## 知识库模块
+### 知识库模块
 
-### 一些优化点
+#### 一些优化点
 
 - 考虑到处理大量文档分块、嵌入等的长耗时，利用 Celery+Redis 构建异步任务队列处理分块嵌入，用线程池优化向量入库。
 - 随着功能迭代，针对检索准确率不够，在 RAG 引入检索前处理+混合检索+重排，在黑神话悟空的自建QA数据下测试，准确率相比语义检索提升近30%，召回率从60%左右提升至80%+。
 - 在文档与片段(chunk)的更新与删除时，实现 Redis 缓存锁，保障数据安全。
 
-### 检索器设计思路
+#### 检索器设计思路
 
 - 在全文检索时，项目考虑的是第一种方案，增删改都要将数据同步到关键词表中，简化全文检索的实现。
 - 第二种方法，本项目并未使用，因为其在全文检索时，需要将所有 doc 和 seg 都遍历一遍再过滤，导致查询效率低。
 
 ![dateset_hybrid_retrieval_flowchart.png](./README/dateset_hybrid_retrieval_flowchart.png)
 
-## 流式输出
+### 流式输出
 
 考虑在`LLMOps`项目中，借用`队列(Queue)+线程(Thread)`的方式来重新实现流式输出这个逻辑，思路如下：
 
