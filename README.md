@@ -56,6 +56,8 @@ docker-compose up -d
 - unstructured/ - 非结构化文档解析
 - tool/ - 内置工具集
 - memory/ - 对话上下文记忆
+- agent/ - 智能体管理
+- builtin_apps/ 内置应用
 
 ### API 项目文件结构梳理：
 
