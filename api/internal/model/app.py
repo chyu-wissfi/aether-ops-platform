@@ -225,7 +225,7 @@ class AppConfigVersion(db.Model):
     id = Column(UUID, nullable=False, server_default=text("uuid_generate_v4()"))  # 配置id
     app_id = Column(UUID, nullable=False)  # 关联应用id
     model_config = Column(JSONB, nullable=False, server_default=text("'{}'::jsonb"))  # 模型配置
-    dialog_round = Column(Integer, nullable=False, server_default=text("0"))  # 鞋带上下文轮数
+    dialog_round = Column(Integer, nullable=False, server_default=text("0"))  # 携带上下文轮数
     preset_prompt = Column(Text, nullable=False, server_default=text("''::text"))  # 人设与回复逻辑
     tools = Column(JSONB, nullable=False, server_default=text("'[]'::jsonb"))  # 应用关联的工具列表
     workflows = Column(JSONB, nullable=False, server_default=text("'[]'::jsonb"))  # 应用关联的工作流列表
