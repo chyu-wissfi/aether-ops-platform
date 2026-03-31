@@ -241,4 +241,4 @@ gantt
 
 ## 许可证
 
-该项目根据 Apache-2.0 许可证的条款进行许可。详情请参见[LICENSE](LICENSE)文件。
+该项目根据 MIT 许可证的条款进行许可。详情请参见[LICENSE](LICENSE)文件。
